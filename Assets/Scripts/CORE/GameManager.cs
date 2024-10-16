@@ -11,7 +11,7 @@ namespace CORE
       private StateMachine _stateMachine;
       
       private void Awake() => _stateMachine = new();
-      private void Start() => _stateMachine.SetState(ServiceLocator.GetService<InitState>());
+      private void Start() => _stateMachine.SetState(ServiceLocator.GetService<CORESM_Init>());
       private void Update() => _stateMachine.UpdateMachine();
       
       public void SetGameState(AbstractState newState) => _stateMachine.SetState(newState);

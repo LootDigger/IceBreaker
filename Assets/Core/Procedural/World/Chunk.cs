@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using Core.ShipControls;
 using CORE.Systems.IceSpawnSystem;
+using CORE.Systems.PlayerSystem;
+using Patterns.ServiceLocator;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 namespace Core.Procedural.World
 {
@@ -20,29 +21,38 @@ namespace Core.Procedural.World
         
         private IceSpawner _spawner;
         private List<GameObject> _chunkParticles = new();
-        private bool _isChunkGenerated = false;
         private GameObject _player;
-        
+        private bool _isChunkGenerated = false;
+
         public static Action onChunkGenerated;
         public static Action onChunkDisposed;
         
         void Awake()
         {
-            _spawner = FindObjectOfType<IceSpawner>();
-            _player = FindObjectOfType<ShipMovementManager>().gameObject;
+            _spawner = ServiceLocator.GetService<IceSpawner>();
+            _player = ServiceLocator.GetService<Player>().gameObject;
         }
 
         private void Update()
         {
-            var distance = Vector3.Distance(_player.transform.position, transform.position);
-            if (distance < _generateDistance)
+            UpdateChunk();
+        }
+
+        private void UpdateChunk()
+        {
+            if (CalculateDistanceToPlayer() < _generateDistance && !_isChunkGenerated)
             {
                 Generate();
             }
-            if (distance > _disposeDistance)
+            else if (CalculateDistanceToPlayer() > _disposeDistance && _isChunkGenerated)
             {
                 Dispose();
             }
+        }
+
+        private float CalculateDistanceToPlayer()
+        {
+            return Vector3.Distance(_player.transform.position, transform.position);
         }
 
         private void SpawnParticles()
@@ -56,7 +66,6 @@ namespace Core.Procedural.World
         private void DespawnParticles()
         {
             if (_chunkParticles == null) { return; }
-            
             foreach (var particle in _chunkParticles)
             {
                 _spawner.Despawn(particle);

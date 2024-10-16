@@ -2,7 +2,7 @@ namespace Patterns.Observer
 {
     public interface IStateObserver
     {
-        void OnSubjectStateEnter(IStateSubject _stateSubject);
-        void OnSubjectStateExit(IStateSubject _stateSubject);
+        void OnSubjectStateEnter(IStateSubject stateSubject);
+        void OnSubjectStateExit(IStateSubject stateSubject);
     }
 }

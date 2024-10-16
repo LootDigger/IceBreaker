@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Core.Procedural.PoolManager;
+using Patterns.ServiceLocator;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -16,6 +17,7 @@ namespace CORE.Systems.IceSpawnSystem
   
     private void Awake()
     {
+      ServiceLocator.RegisterService(this);
       _poolManager = PoolManager._instance;
       _iceParticleContainer.Init();
       _spawnedParticlesInstances = new ();

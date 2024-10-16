@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.ShipControls
 {
-    public class ShipPlayerMovement : IMoveModule
+    public class ShipPlayerMovement : IControlDriver
     {
         public Vector3 CalculateTargetPosition()
         {
@@ -22,7 +22,7 @@ namespace Core.ShipControls
         }
     }
 
-    public interface IMoveModule
+    public interface IControlDriver
     {
         Vector3 CalculateTargetPosition(); 
     }

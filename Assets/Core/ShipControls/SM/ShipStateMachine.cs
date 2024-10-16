@@ -4,8 +4,8 @@ namespace Core.ShipControls.SM
 {
     public class ShipStateMachine
     {
-        private IState _currentState = null;
-        public System.Action<IMoveModule> OnStateChanged;
+        private IStateDeprecated _currentStateDeprecated = null;
+        public System.Action<IControlDriver> OnStateChanged;
         public AutoPilotSettings APSettings { get; private set; }
         public ManualPilotSettings MPSettings { get; private set; }
 
@@ -15,14 +15,14 @@ namespace Core.ShipControls.SM
             this.MPSettings = _mpSettings;
         }
 
-        public void InitMachine() => SetState(new ManualPilotState());
+        public void InitMachine() => SetState(new ManualPilotStateDeprecated());
     
-        public void UpdateMachine() => _currentState.Update();
+        public void UpdateMachine() => _currentStateDeprecated.Update();
 
-        public void SetState(IState newState)
+        public void SetState(IStateDeprecated newStateDeprecated)
         {
-            _currentState = newState;
-            OnStateChanged?.Invoke(_currentState.Init(this));
+            _currentStateDeprecated = newStateDeprecated;
+            OnStateChanged?.Invoke(_currentStateDeprecated.Init(this));
         }
 
         public struct AutoPilotSettings
