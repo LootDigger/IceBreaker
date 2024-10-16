@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b576ccf16a6481c478cfa5c6a6054489, type: 3}
+  m_Name: IcePrefabContainer
+  m_EditorClassIdentifier: 
+  _particleMaterials:
+  - {fileID: 2100000, guid: ff56a4b731138ed4cb9e5d21126ecea5, type: 2}
+  - {fileID: 2100000, guid: fe9242108cfde0d49a9288d26454d0b9, type: 2}
+  - {fileID: 2100000, guid: 47896b4c9d4a6f54c8419d998ae6e346, type: 2}
+  - {fileID: 2100000, guid: 4930afeaf6f27c64aa15b901a50197b8, type: 2}
+  _particlePrefabVariations:
+  - {fileID: 224161836393777526, guid: 7fd1269d89f01a74290efd3584dcca2b, type: 3}
+  - {fileID: 7036643031433313510, guid: 2fa7b77802beacb47b2977797ed7688b, type: 3}
+  - {fileID: 9084809004102718766, guid: e7232eb6e8ee116498a8241c063ee5a9, type: 3}
+  - {fileID: 3048134331658682525, guid: e09c8cc5575a8be49bad32256872bb61, type: 3}

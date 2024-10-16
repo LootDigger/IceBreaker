@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core.ShipControls;
+using CORE.Systems.IceSpawnSystem;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
@@ -48,7 +49,7 @@ namespace Core.Procedural.World
         {
             for (int i = 0; i < _particlesCount; i++)
             {
-                _chunkParticles.Add(_spawner.SpawnRandomIcePrefab(transform.position, _spawnRadius));
+                _chunkParticles.Add(_spawner.SpawnRandomIceParticle(transform.position, _spawnRadius));
             }
         }
         
@@ -62,6 +63,7 @@ namespace Core.Procedural.World
             }
             _chunkParticles.Clear();
         }
+        
         private void Generate()
         {
             if(_isChunkGenerated) { return; }

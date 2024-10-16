@@ -10,15 +10,11 @@ namespace Patterns.AbstractStateMachine
     {
         [SerializeField][OdinSerialize]
         private List<IStateObserver> _stateObservers = new();
+        
 
         public virtual void EnterState() => NotifyOnEnter();
         public virtual void ExitState() => NotifyOnExit();
         public virtual void UpdateState(){}
-        
-        private void Awake()
-        {
-            ServiceLocator.ServiceLocator.RegisterService(this);
-        }
         
         public void NotifyOnEnter()
         {

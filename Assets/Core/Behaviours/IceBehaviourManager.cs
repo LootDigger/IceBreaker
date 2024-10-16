@@ -4,6 +4,7 @@ using Core;
 using Core.Behaviours;
 using Core.Jobs;
 using Core.Procedural.World;
+using CORE.Systems.IceSpawnSystem;
 using UnityEngine;
 using UnityEngine.Jobs;
 using Unity.Mathematics;
@@ -57,7 +58,6 @@ public class IceBehaviourManager : MonoBehaviour
     
     private void UpdateTransformAccessArray()
     {
-        Debug.Log("UpdateTransformAccessArray");
         var particles = spawner.GetAllParticles();
         _particlesAccessTransforms.SetTransforms(particles);
     }

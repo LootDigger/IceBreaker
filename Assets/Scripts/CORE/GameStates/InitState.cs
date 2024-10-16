@@ -8,6 +8,11 @@ namespace CORE.GameStates
     public class InitState : AbstractState
     {
         private GameInitWaiter _gameInitWaiter;
+        
+        private void Awake()
+        {
+            ServiceLocator.RegisterService(this);
+        }
 
         public override void EnterState()
         {
