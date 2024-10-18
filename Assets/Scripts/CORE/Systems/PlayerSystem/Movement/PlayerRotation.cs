@@ -1,51 +1,38 @@
+using System;
 using CORE.GameStates;
 using Core.ShipControls;
 using CORE.Systems.PlayerSystem.SM;
-using Patterns.Observer;
+using Patterns.ServiceLocator;
 using UnityEngine;
 
 namespace CORE.Systems.PlayerSystem.Movement
 {
-    public class PlayerRotation : MonoBehaviour, IStateObserver
+    public class PlayerRotation : MonoBehaviour
     {
         private IControlDriver _currentControlDriver = null;
         private bool _isRotationBlocked = true;
-        
-        void Update()
+
+        private void Awake()
+        {
+            ServiceLocator.RegisterService(this);
+        }
+
+        private void Update()
         {
             if (_isRotationBlocked) {return;}
-            RotateShip(CalculateRotation(_currentControlDriver.CalculateTargetPosition()));
+            RotateShip(CalculateRotation(_currentControlDriver.GetDestination()));
         }
+
+        public void SetRotationBlock(bool isBlocked) => _isRotationBlocked = isBlocked;
+
+        public void SetAutopilotDriver() => SetNewDriver(new ShipAutoPilotDriver());
         
-        public void OnSubjectStateEnter(IStateSubject stateSubject)
-        {
-            Debug.Log("OnSubjectStateEnter Rotation");
-            if (stateSubject is CORESM_GameOver)
-            {
-                _isRotationBlocked = true;
-            }
-
-            if (stateSubject is SHIPSM_Autopilot)
-            {
-                SetNewDriver(new ShipAutoPilotMovement());
-            }
-            
-            if (stateSubject is SHIPSM_ManualControl)
-            {
-                _isRotationBlocked = false;
-                SetNewDriver(new ShipPlayerMovement());
-            }
-        }
-
-        public void OnSubjectStateExit(IStateSubject stateSubject)
-        {
-        }
+        public void SetManualPilotDriver() => SetNewDriver(new ShipManualPilotDriver());
 
         private void SetNewDriver(IControlDriver newDriver) => _currentControlDriver = newDriver;
         
         private Quaternion CalculateRotation(Vector3 targetPosition)
         {
-            Debug.Log("Target position: " + targetPosition);
             Debug.DrawLine(transform.position,targetPosition,Color.red,Time.deltaTime);
             Vector3 direction = (targetPosition - transform.position).normalized;
             return Quaternion.LookRotation(direction);

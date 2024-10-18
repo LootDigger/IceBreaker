@@ -1,6 +1,7 @@
 using Core.Procedural.World;
 using CORE.Systems.IceSpawnSystem;
 using CORE.Systems.PlayerSystem;
+using CORE.Systems.ProceduralSystem;
 using Unity.Burst;
 using Unity.Mathematics;
 using UnityEngine;
@@ -35,14 +36,14 @@ namespace CORE.Systems.IceBehaviourSystem
 
         private void SubscribeEvents()
         {
-            Chunk.onChunkGenerated += UpdateTransformAccessArray;
-            Chunk.onChunkDisposed += UpdateTransformAccessArray;
+            ChunkPropsGenerator.onChunkGenerated += UpdateTransformAccessArray;
+            ChunkPropsGenerator.onChunkDisposed += UpdateTransformAccessArray;
         }
 
         private void UnsubscribeEvents() 
         {
-            Chunk.onChunkGenerated -= UpdateTransformAccessArray;
-            Chunk.onChunkDisposed -= UpdateTransformAccessArray;
+            ChunkPropsGenerator.onChunkGenerated -= UpdateTransformAccessArray;
+            ChunkPropsGenerator.onChunkDisposed -= UpdateTransformAccessArray;
         }
     
         private void UpdateTransformAccessArray()

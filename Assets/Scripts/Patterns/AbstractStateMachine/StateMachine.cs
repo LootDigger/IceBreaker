@@ -4,9 +4,9 @@ namespace Patterns.AbstractStateMachine
 {
     public class StateMachine
     {
-        private AbstractState _currentState;
+        private IAbstractState _currentState;
         
-        public void SetState(AbstractState state)
+        public void SetState(IAbstractState state)
         {
             if (_currentState != null)
             {
@@ -18,6 +18,11 @@ namespace Patterns.AbstractStateMachine
 
         public void UpdateMachine()
         {
+            if (_currentState == null)
+            {
+                Debug.LogWarning("Looks like current state of SM is NULL");
+                return;
+            }
             _currentState.UpdateState();
         }
     }

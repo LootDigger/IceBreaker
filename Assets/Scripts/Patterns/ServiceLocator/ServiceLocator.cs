@@ -24,7 +24,7 @@ namespace Patterns.ServiceLocator
             {
                 return (T)services[typeof(T)];
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
                 throw new NotImplementedException("Can't get service of type " + typeof(T));
             }

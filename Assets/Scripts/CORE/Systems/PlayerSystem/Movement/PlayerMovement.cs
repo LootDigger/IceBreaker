@@ -1,31 +1,28 @@
-using CORE.GameStates;
-using Patterns.Observer;
+using Patterns.ServiceLocator;
 using UnityEngine;
 
 namespace CORE.Systems.PlayerSystem
 {
-    public class PlayerMovement : MonoBehaviour, IStateObserver
+    public class PlayerMovement : MonoBehaviour
     {
         [SerializeField]
         private float _moveSpeed = 10f;
 
-        private float _currentSpeed = 0f;
-
-        public void OnSubjectStateEnter(IStateSubject stateSubject)
+        private bool _isMovementBlocked;
+        
+        private void Awake()
         {
-            _currentSpeed = stateSubject is CORESM_InGame? _moveSpeed : 0f;
-        }
-
-        public void OnSubjectStateExit(IStateSubject stateSubject)
-        {
+            ServiceLocator.RegisterService(this);
         }
         
-        void Update()
+        private void Update()
         {
+            if(_isMovementBlocked) {return;}
             MoveShip();
         }
         
-        private void MoveShip() => transform.Translate(Vector3.forward * _currentSpeed * Time.deltaTime);
-
+        public void SetMovementBlock(bool isMovementBlocked) => _isMovementBlocked = isMovementBlocked;
+        
+        private void MoveShip() => transform.Translate(Vector3.forward * _moveSpeed * Time.deltaTime);
     }
 }

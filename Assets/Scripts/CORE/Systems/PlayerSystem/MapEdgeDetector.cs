@@ -1,3 +1,5 @@
+using System;
+using Patterns.ServiceLocator;
 using UnityEngine;
 
 namespace CORE.Systems.PlayerSystem
@@ -8,6 +10,11 @@ namespace CORE.Systems.PlayerSystem
         private Transform _shipTransform;
         [SerializeField]
         private float _edgeDetectionRayDistance = 20f;
+
+        private void Start()
+        {
+            ServiceLocator.RegisterService(this);
+        }
 
         public bool IsLevelEdgeDetected()
         {

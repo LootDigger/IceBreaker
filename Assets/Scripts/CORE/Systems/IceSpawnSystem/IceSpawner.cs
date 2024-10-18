@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core.Procedural.PoolManager;
 using Patterns.ServiceLocator;
@@ -10,7 +11,7 @@ namespace CORE.Systems.IceSpawnSystem
   public class IceSpawner : MonoBehaviour
   {
     [SerializeField]
-    private IceParticleData _iceParticleContainer;
+    private PrefabVariantsData _prefabVariantsContainer;
     private List<Transform> _spawnedParticlesInstances;
     
     private PoolManager _poolManager;
@@ -18,14 +19,18 @@ namespace CORE.Systems.IceSpawnSystem
     private void Awake()
     {
       ServiceLocator.RegisterService(this);
-      _poolManager = PoolManager._instance;
-      _iceParticleContainer.Init();
+      _prefabVariantsContainer.Init();
       _spawnedParticlesInstances = new ();
+    }
+
+    private void Start()
+    {
+      _poolManager = ServiceLocator.GetService<PoolManager>();
     }
 
     public GameObject SpawnRandomIceParticle(Vector3 position, float spawnRadius)
     {
-      var particleData = _iceParticleContainer.GetRandomParticle();
+      var particleData = _prefabVariantsContainer.GetRandomVariant();
       var particlaGO = _poolManager.Instantiate(particleData.prefab);
       
       if (particlaGO != null)

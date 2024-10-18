@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b576ccf16a6481c478cfa5c6a6054489, type: 3}
+  m_Name: IcebergPrefabs
+  m_EditorClassIdentifier: 
+  _particleMaterials:
+  - {fileID: 2100000, guid: d21afdf55fc07244a8649d077ec6f5a1, type: 2}
+  - {fileID: 2100000, guid: 8163f111b26eb7948a4a119fcd672aa4, type: 2}
+  _particlePrefabVariations:
+  - {fileID: 1091655738851478245, guid: 3a6294eab4b32014f81712f23d098341, type: 3}
+  - {fileID: 7239153636447766933, guid: 4d04afdceddaaeb49b428086fe108607, type: 3}
