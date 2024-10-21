@@ -12,7 +12,7 @@ namespace Patterns.ServiceLocator
         {
             if (services.ContainsKey(typeof(T)))
             {
-                Debug.LogWarning("Service already registered");
+                Debug.LogWarning("Service already registered " + typeof(T));
                 return;
             }
             services[typeof(T)] = service;

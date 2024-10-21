@@ -1,10 +1,26 @@
+using System;
+using System.Collections.Generic;
+using Patterns.AbstractStateMachine;
+
 namespace Patterns.Command
 {
-    public static class CommandExecuter
+    public class CommandExecuter
     {
-        public static void ExecuteCommand(ICommand command)
+        private Dictionary<Type, ICommand> _registeredCommands;
+        
+        public CommandExecuter()
         {
-            command.Execute();
+            _registeredCommands = new();
+        }
+
+        public void RegisterCommand(ICommand command)
+        {
+            _registeredCommands.Add(command.GetType(), command);
+        }
+        
+        public void ExecuteCommand<TState>() where TState : ICommand
+        {
+            _registeredCommands[typeof(TState)].Execute();
         }
     }
 }

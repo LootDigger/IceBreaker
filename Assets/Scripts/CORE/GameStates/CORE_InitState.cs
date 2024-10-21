@@ -1,16 +1,20 @@
 using System;
 using Patterns.AbstractStateMachine;
 using System.Threading.Tasks;
-using CORE.GameStates.Commands;
-using Patterns.Command;
-using Patterns.ServiceLocator;
 using UnityEngine;
 
 namespace CORE.GameStates
 {
-    public class CORE_InitState : IAbstractState
+    public class CORE_InitState : IState
     {
         private GameInitWaiter _gameInitWaiter;
+
+        public StateMachine StateMachine { get; set; }
+        
+        public CORE_InitState(StateMachine stateMachine)
+        {
+            StateMachine = stateMachine;
+        }
 
         public void EnterState()
         {
@@ -28,7 +32,7 @@ namespace CORE.GameStates
         async Task WaitForGameLoad()
         {
             await _gameInitWaiter.WaitForGameLoad();
-            CommandExecuter.ExecuteCommand(new SetWaitForGameStateCommand());
+            StateMachine.SetState<CORE_GameMenuState>();
         }
 
         private class GameInitWaiter

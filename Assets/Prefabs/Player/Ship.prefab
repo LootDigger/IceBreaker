@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5791917182447919305}
-  - component: {fileID: 1085122268319075224}
   - component: {fileID: 6461442828240890018}
   - component: {fileID: 4476998707234813587}
   - component: {fileID: 2762928085295694608}
   - component: {fileID: 153133793453406127}
   - component: {fileID: 2654692778700423356}
   - component: {fileID: 6686521455364900719}
+  - component: {fileID: 3151693798338537329}
   - component: {fileID: 1045559030836139741}
   m_Layer: 3
   m_Name: Ship
@@ -40,18 +40,6 @@ Transform:
   - {fileID: 5434203472897165594}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1085122268319075224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8339835794682618316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bc78f68373cce419cd3abfff30fdb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6461442828240890018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +130,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipTransform: {fileID: 5791917182447919305}
-  _edgeDetectionRayDistance: 40
+  _edgeDetectionRayDistance: 20
+--- !u!114 &3151693798338537329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339835794682618316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f1de22a1c2fb145b5597dedccdda76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealthPoints: 3
 --- !u!65 &1045559030836139741
 BoxCollider:
   m_ObjectHideFlags: 0

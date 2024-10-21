@@ -3,11 +3,13 @@ using Patterns.ServiceLocator;
 
 namespace CORE.GameStates
 {
-    public class CORE_GameOverState : IAbstractState
+    public class CORE_GameOverState : IState
     {
-        private void Awake()
+        public CORE_GameOverState(StateMachine stateMachine)
         {
-            ServiceLocator.RegisterService(this);
+            StateMachine = stateMachine;
         }
+
+        public StateMachine StateMachine { get; set; }
     }
 }
