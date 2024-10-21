@@ -15,7 +15,7 @@ namespace CORE.GameStates
         
         public void EnterState()
         {
-            Debug.Log("CORE: Enter State WaitForGame");
+            Debug.Log("CORE: Enter State WaitForGame"  + Time.time);
         }
     }
 }

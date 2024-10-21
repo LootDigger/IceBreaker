@@ -1,8 +1,4 @@
 using System;
-using CORE.Modules.PlayerSystem.SM;
-using CORE.Systems.PlayerSystem.SM;
-using Patterns.AbstractStateMachine;
-using Patterns.Command;
 using Patterns.ServiceLocator;
 using UnityEngine;
 
@@ -14,7 +10,7 @@ namespace CORE.Systems.PlayerSystem.Health
         private int _maxHealthPoints = 3;
         
         private int _currentHealthPoints;
-        private StateMachine _shipStateMachine;
+        public Action OnHealthReachedDeadPoint;
 
         private void Awake()
         {
@@ -22,17 +18,12 @@ namespace CORE.Systems.PlayerSystem.Health
             ResetHealthPoints();
         }
         
-        private void Start()
-        {
-            _shipStateMachine = ServiceLocator.GetService<ShipStateMachine>();
-        }
-        
         public void DecreaseHealthPoint()
         {
             _currentHealthPoints--;
             if (_currentHealthPoints <= 0)
             {
-                _shipStateMachine.SetState<SHIP_DeadState>();
+                OnHealthReachedDeadPoint?.Invoke();
             }
         }
 

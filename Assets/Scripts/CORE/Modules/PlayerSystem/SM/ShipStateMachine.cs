@@ -12,6 +12,7 @@ namespace CORE.Modules.PlayerSystem.SM
         private PlayerMovement _playerMovement;
         private PlayerRotation _playerRotation;
         private HealthManager _playerHealth;
+        private MapEdgeDetector _mapEdgeDetector;
         
         public ShipStateMachine()
         {
@@ -27,13 +28,14 @@ namespace CORE.Modules.PlayerSystem.SM
             _playerRotation = ServiceLocator.GetService<PlayerRotation>();
             _playerMovement = ServiceLocator.GetService<PlayerMovement>();
             _playerHealth = ServiceLocator.GetService<HealthManager>();
+            _mapEdgeDetector = ServiceLocator.GetService<MapEdgeDetector>();
         }
         
         private void InitStateMachine()
         {
             RegisterState(new SHIP_IdleState(this,_playerRotation, _playerMovement));
             RegisterState(new SHIP_GameInitState(this));
-            RegisterState(new SHIP_ManualPilotState(this,_playerRotation, _playerMovement));
+            RegisterState(new SHIP_ManualPilotState(this,_playerRotation, _playerMovement,_mapEdgeDetector));
             RegisterState(new SHIP_AutopilotState(this,_playerRotation));
             RegisterState(new SHIP_ShootState(this));
             RegisterState(new SHIP_TakeDamageState(this,_playerHealth));

@@ -6,9 +6,8 @@ namespace Patterns.AbstractStateMachine
 {
     public abstract class StateMachine
     {
-        protected Dictionary<Type, IState> _states;
-        protected IState _currentState;
-        protected IState _previousState;
+        private Dictionary<Type, IState> _states;
+        private IState _currentState;
 
         public StateMachine()
         {
@@ -24,21 +23,10 @@ namespace Patterns.AbstractStateMachine
         {
             if (_currentState != null)
             {
-                _previousState = _currentState;
                 _currentState.ExitState();
             }
             _currentState = _states[typeof(TState)];
             _currentState.EnterState();
-        }
-
-        public void UpdateMachine()
-        {
-            if (_currentState == null)
-            {
-                Debug.LogWarning("Looks like current state of SM is NULL");
-                return;
-            }
-            _currentState.UpdateState();
         }
     }
 }

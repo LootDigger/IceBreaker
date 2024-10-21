@@ -10,6 +10,5 @@ namespace Patterns.AbstractStateMachine
         public StateMachine StateMachine { get; set; }
         public virtual void EnterState(){}
         public virtual void ExitState(){}
-        public virtual void UpdateState(){}
     }
 }

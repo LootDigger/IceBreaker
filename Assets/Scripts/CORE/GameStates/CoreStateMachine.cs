@@ -1,4 +1,6 @@
 using Patterns.AbstractStateMachine;
+using Patterns.ServiceLocator;
+using Scene_Management;
 
 namespace CORE.GameStates
 {
@@ -11,8 +13,7 @@ namespace CORE.GameStates
         
         private void InitStateMachine()
         {
-            RegisterState(new CORE_BootstrapState(this));
-            RegisterState(new CORE_InitState(this));
+            RegisterState(new CORE_InitState(this,ServiceLocator.GetService<SceneLoader>()));
             RegisterState(new CORE_GameMenuState(this));
             RegisterState(new CORE_GameplayState(this));
             RegisterState(new CORE_GameOverState(this));

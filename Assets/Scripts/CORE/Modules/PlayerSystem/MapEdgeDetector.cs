@@ -10,10 +10,20 @@ namespace CORE.Systems.PlayerSystem
         private Transform _shipTransform;
         [SerializeField]
         private float _edgeDetectionRayDistance = 20f;
+        
+        public Action OnMapEdgeReached;
 
         private void Awake()
         {
             ServiceLocator.RegisterService(this);
+        }
+
+        private void Update()
+        {
+            if (IsLevelEdgeDetected())
+            {
+                OnMapEdgeReached?.Invoke();
+            }
         }
 
         public bool IsLevelEdgeDetected()
