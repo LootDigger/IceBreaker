@@ -1,7 +1,8 @@
-using CORE.Modules.PlayerSystem.SM;
+using System;
+using CORE.Modules.Player;
+using CORE.Modules.Player.SM;
 using Core.Procedural.PoolManager;
 using CORE.Systems.PlayerSystem;
-using CORE.Systems.PlayerSystem.SM;
 using Patterns.AbstractStateMachine;
 using Patterns.Command;
 using Patterns.ServiceLocator;
@@ -13,7 +14,7 @@ namespace CORE.Systems.Enemies
     {
         private PoolManager _poolManager;
         private StateMachine _shipStateMachine;
-
+        
         void Start()
         {
             _poolManager = ServiceLocator.GetService<PoolManager>();
@@ -24,7 +25,6 @@ namespace CORE.Systems.Enemies
         {
             if (other.GetComponent<Player>() == null) { return; }
             _shipStateMachine.SetState<SHIP_TakeDamageState>();
-            // TEMP
             _poolManager.Destroy(gameObject);
         }
     }

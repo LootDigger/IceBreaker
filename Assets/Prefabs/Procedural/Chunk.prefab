@@ -120,9 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62176f512601fed4ba1e28a68133ab5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _generateDistance: 40
-  _disposeDistance: 40
-  _propsGenerator: {fileID: 5440097837049011306}
+  _generationSettings: {fileID: 11400000, guid: 5e024f0a053e7e2419eafa231f6259c8, type: 2}
+  _particlesGenerator: {fileID: 5440097837049011306}
   _enemyGenerator: {fileID: -392582883208388106}
 --- !u!114 &5440097837049011306
 MonoBehaviour:
@@ -136,8 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef56c5981db7784fb494af68cfee0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particlesCount: 25
-  _spawnRadius: 10
+  _generationSettings: {fileID: 11400000, guid: 5e024f0a053e7e2419eafa231f6259c8, type: 2}
 --- !u!114 &-392582883208388106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,5 +148,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20253291ef15a26438aa8258cf48c725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyCount: 1
-  _spawnRadius: 10

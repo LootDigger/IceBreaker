@@ -1,13 +1,15 @@
-using CORE.Modules.PlayerSystem.SM;
+using System;
+using CORE.Modules.Player.SM;
 using Patterns.AbstractStateMachine;
 using Patterns.ServiceLocator;
-using UnityEngine;
 
 namespace CORE.GameStates
 {
     public class CORE_GameplayState : IState
     {
         public StateMachine StateMachine { get; set; }
+        public Action OnEnterStateEvent { get; set; }
+        public Action OnExitStateEvent { get; set; }
         private ShipStateMachine _shipStateMachine;
         
         public CORE_GameplayState(StateMachine stateMachine)
@@ -17,9 +19,14 @@ namespace CORE.GameStates
 
         public void EnterState()
         {
-            Debug.Log("CORE: Enter State InGameState");
+            OnEnterStateEvent?.Invoke();
             _shipStateMachine = ServiceLocator.GetService<ShipStateMachine>();
             _shipStateMachine.SetState<SHIP_GameInitState>();
+        }
+
+        public void ExitState()
+        {
+            OnExitStateEvent?.Invoke();
         }
     }
 }

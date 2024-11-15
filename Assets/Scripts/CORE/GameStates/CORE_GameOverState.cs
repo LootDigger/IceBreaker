@@ -1,15 +1,27 @@
+using System;
 using Patterns.AbstractStateMachine;
-using Patterns.ServiceLocator;
 
 namespace CORE.GameStates
 {
     public class CORE_GameOverState : IState
     {
+        public StateMachine StateMachine { get; set; }
+        public Action OnEnterStateEvent { get; set; }
+        public Action OnExitStateEvent { get; set; }
+        
         public CORE_GameOverState(StateMachine stateMachine)
         {
             StateMachine = stateMachine;
         }
+        
+        public void EnterState()
+        {
+            OnEnterStateEvent?.Invoke();
+        }
 
-        public StateMachine StateMachine { get; set; }
+        public void ExitState()
+        {
+            OnExitStateEvent?.Invoke();
+        }
     }
 }

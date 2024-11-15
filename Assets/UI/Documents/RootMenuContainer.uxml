@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="GameMenuUI" src="project://database/Assets/UI/Documents/GameMenuUI.uxml?fileID=9197481963319205126&amp;guid=3367d14a298fd6c42993b6eab4e23521&amp;type=3#GameMenuUI" />
+    <ui:Template name="InGameUI" src="project://database/Assets/UI/Documents/InGameUI.uxml?fileID=9197481963319205126&amp;guid=25e7470476fc5c74091ce044d994dad6&amp;type=3#InGameUI" />
+    <ui:Instance template="GameMenuUI" name="GameMenuUI" style="width: 100%; height: 100%; position: absolute;" />
+    <ui:Instance template="InGameUI" name="InGameUI" style="width: 100%; height: 100%; position: absolute;" />
+</ui:UXML>

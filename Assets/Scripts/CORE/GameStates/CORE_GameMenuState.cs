@@ -1,12 +1,13 @@
+using System;
 using Patterns.AbstractStateMachine;
-using Patterns.ServiceLocator;
-using UnityEngine;
 
 namespace CORE.GameStates
 {
     public class CORE_GameMenuState : IState
     {
         public StateMachine StateMachine { get; set; }
+        public Action OnEnterStateEvent { get; set; }
+        public Action OnExitStateEvent { get; set; }
 
         public CORE_GameMenuState(StateMachine stateMachine)
         {
@@ -15,7 +16,12 @@ namespace CORE.GameStates
         
         public void EnterState()
         {
-            Debug.Log("CORE: Enter State WaitForGame"  + Time.time);
+            OnEnterStateEvent?.Invoke();
+        }
+
+        public void ExitState()
+        {
+            OnExitStateEvent?.Invoke();
         }
     }
 }

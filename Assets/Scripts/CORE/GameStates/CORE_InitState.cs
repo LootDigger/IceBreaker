@@ -1,10 +1,7 @@
 using System;
 using Patterns.AbstractStateMachine;
 using System.Threading.Tasks;
-using CORE.Modules.PlayerSystem.SM;
-using Patterns.ServiceLocator;
 using Scene_Management;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CORE.GameStates
@@ -13,7 +10,9 @@ namespace CORE.GameStates
     {
         private SceneLoader _sceneLoader;
         public StateMachine StateMachine { get; set; }
-        
+        public Action OnEnterStateEvent { get; set; }
+        public Action OnExitStateEvent { get; set; }
+
         public CORE_InitState(StateMachine stateMachine, SceneLoader sceneLoader)
         {
             StateMachine = stateMachine;
@@ -22,38 +21,48 @@ namespace CORE.GameStates
 
         public void EnterState()
         {
-            Debug.Log("CORE: Enter State Init " + Time.time);
+            OnEnterStateEvent?.Invoke();
             InitState();
+        }
+
+        public void ExitState()
+        {
+            OnExitStateEvent?.Invoke();
         }
 
         private async Task InitState()
         {
             await InitWaiter();
             await LoadGameScene();
-            Debug.Log("Load Game Menu State");
-            StateMachine.SetState<CORE_GameMenuState>();
         }
 
         private async Task LoadGameScene()
         {
             await _sceneLoader.LoadScene(new LoadSceneRequest()
             {
-                SceneName = "Scenes/GameScene",
+                SceneName = PersistantScenes.MAIN_GAME_SCENE,
                 LoadSceneMode = LoadSceneMode.Single
-            });
+            },OnSceneLoadedCallback);
+        }
+
+        private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
+        {
+            StateMachine.SetState<CORE_GameMenuState>();
+            SceneManager.sceneLoaded -= OnSceneLoadedCallback;
         }
 
         private async Task InitWaiter()
         {
+            //TODO: Magic number
             GameInitWaiter dummyWaiter = new GameInitWaiter(5000);
             await dummyWaiter.WaitForGameLoad();
         }
 
         private class GameInitWaiter
         {
-            private int waitTime;
-            public GameInitWaiter(int time) => waitTime = time;
-            public async Task WaitForGameLoad() => await Task.Delay(waitTime);
+            private int _waitTime;
+            public GameInitWaiter(int time) => _waitTime = time;
+            public async Task WaitForGameLoad() => await Task.Delay(_waitTime);
         }
     }
 }

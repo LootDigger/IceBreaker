@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 
 namespace Core.Procedural.PoolManager
 {
+    
     public class PoolManager : MonoBehaviour
     {
         [SerializeField]
@@ -17,12 +18,14 @@ namespace Core.Procedural.PoolManager
         {
             ServiceLocator.RegisterService(this);
             InitializePoolRequests();
+            DontDestroyOnLoad(this);
         }
 
         private void CreatePool(GameObject prefab, int poolSize)
         {
             List<GameObject> pool = new();
             GameObject poolParent = new GameObject(prefab.name + "_POOL");
+            poolParent.transform.SetParent(transform);
             poolParent.transform.position = new Vector3(1000, 1000, 1000);
             for (int i = 0; i < poolSize; i++)
             {
