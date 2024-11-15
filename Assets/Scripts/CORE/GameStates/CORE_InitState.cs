@@ -32,6 +32,7 @@ namespace CORE.GameStates
 
         private async Task InitState()
         {
+            UIEventDocker.OnLoadingUIShown.Invoke();
             await InitWaiter();
             await LoadGameScene();
         }
@@ -42,7 +43,7 @@ namespace CORE.GameStates
             {
                 SceneName = PersistantScenes.MAIN_GAME_SCENE,
                 LoadSceneMode = LoadSceneMode.Single
-            },OnSceneLoadedCallback);
+            }, OnSceneLoadedCallback);
         }
 
         private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
@@ -53,7 +54,7 @@ namespace CORE.GameStates
 
         private async Task InitWaiter()
         {
-            //TODO: Magic number
+            //TODO: Fix Magic number
             GameInitWaiter dummyWaiter = new GameInitWaiter(5000);
             await dummyWaiter.WaitForGameLoad();
         }

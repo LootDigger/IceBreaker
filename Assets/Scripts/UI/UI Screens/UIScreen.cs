@@ -13,7 +13,6 @@ namespace UI
          _rootElement = root ?? throw new ArgumentNullException();
       }
 
-
       public void HideInstantly()
       {
          _rootElement.style.display = DisplayStyle.None;

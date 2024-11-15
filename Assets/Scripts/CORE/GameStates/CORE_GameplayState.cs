@@ -22,6 +22,7 @@ namespace CORE.GameStates
             OnEnterStateEvent?.Invoke();
             _shipStateMachine = ServiceLocator.GetService<ShipStateMachine>();
             _shipStateMachine.SetState<SHIP_GameInitState>();
+            UIEventDocker.OnGameplayUIShown.Invoke();
         }
 
         public void ExitState()
