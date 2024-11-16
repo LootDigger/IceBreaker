@@ -21,6 +21,7 @@ namespace UI
 
     private void Awake()
     {
+      DontDestroyOnLoad(gameObject);
       InitScreens();
       SubscribeDockerEvents();
     }
@@ -34,8 +35,8 @@ namespace UI
     {
       var root = _uiDocument.rootVisualElement;
       _loadingUIScreen = new LoadingUIScreen(root.Q<VisualElement>("LoadingUI"));
-      _mainMenuUIScreen = new MainMenuUIScreen(root.Q<VisualElement>("MainMenuUI"));
-      _gameplayUIScreen = new GameplayUIScreen(root.Q<VisualElement>("GameplayUI"));
+      _mainMenuUIScreen = new MainMenuUIScreen(root.Q<VisualElement>("GameMenuUI"));
+      _gameplayUIScreen = new GameplayUIScreen(root.Q<VisualElement>("InGameUI"));
       _gameOverUIScreen = new GameOverUIScreen(root.Q<VisualElement>("GameOverUI"));
 
       _uiScreens = new List<UIScreen>()

@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="IN-GAME-UI" style="flex-grow: 1; display: flex; position: relative; width: 100%; height: 285px; opacity: 1;">
+        <ui:VisualElement name="SCORE-UI-AREA" style="flex-grow: 1; align-items: center; justify-content: flex-start; padding-top: 400px;">
+            <ui:Label tabindex="-1" text="15" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SCORE-TEXT" style="font-size: 150px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="EMPTY-AREA" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

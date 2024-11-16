@@ -1,6 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="GameMenuUI" src="project://database/Assets/UI/Documents/GameMenuUI.uxml?fileID=9197481963319205126&amp;guid=3367d14a298fd6c42993b6eab4e23521&amp;type=3#GameMenuUI" />
-    <ui:Template name="InGameUI" src="project://database/Assets/UI/Documents/InGameUI.uxml?fileID=9197481963319205126&amp;guid=25e7470476fc5c74091ce044d994dad6&amp;type=3#InGameUI" />
-    <ui:Instance template="GameMenuUI" name="GameMenuUI" style="width: 100%; height: 100%; position: absolute;" />
-    <ui:Instance template="InGameUI" name="InGameUI" style="width: 100%; height: 100%; position: absolute;" />
+    <ui:Template name="GameMenuUI" src="project://database/Assets/UI/Documents/Screens/GameMenuUI.uxml?fileID=9197481963319205126&amp;guid=3367d14a298fd6c42993b6eab4e23521&amp;type=3#GameMenuUI" />
+    <ui:Template name="InGameUI" src="project://database/Assets/UI/Documents/Screens/InGameUI.uxml?fileID=9197481963319205126&amp;guid=25e7470476fc5c74091ce044d994dad6&amp;type=3#InGameUI" />
+    <ui:Template name="LoadingUI" src="project://database/Assets/UI/Documents/Screens/LoadingUI.uxml?fileID=9197481963319205126&amp;guid=f0f4fd77768f72b46ba95e7db85da8bc&amp;type=3#LoadingUI" />
+    <ui:Template name="GameOverUI" src="project://database/Assets/UI/Documents/Screens/GameOverUI.uxml?fileID=9197481963319205126&amp;guid=badd2e80513e57144b65cf9d0c496a45&amp;type=3#GameOverUI" />
+    <ui:Instance template="LoadingUI" name="LoadingUI" style="position: absolute; overflow: visible; visibility: visible; display: flex; width: 100%; height: 100%;" />
+    <ui:Instance template="GameMenuUI" name="GameMenuUI" style="width: 100%; height: 100%; position: absolute; left: auto; display: flex; visibility: visible;" />
+    <ui:Instance template="InGameUI" name="InGameUI" style="width: 100%; height: 100%; position: absolute; display: flex; visibility: visible; overflow: visible;" />
+    <ui:Instance template="GameOverUI" name="GameOverUI" style="position: absolute; display: flex; visibility: visible; overflow: visible; width: 100%; height: 100%;" />
 </ui:UXML>

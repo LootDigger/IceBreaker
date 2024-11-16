@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="BackGround" style="flex-grow: 1; background-color: rgb(49, 174, 255);">
+        <ui:VisualElement name="TextElement" style="flex-grow: 1; flex-direction: column;">
+            <ui:VisualElement name="ICE_TEXT_CONTAINER" style="flex-grow: 1; position: absolute;">
+                <ui:Label tabindex="-1" text="ICE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ICE" style="-unity-text-align: upper-center; justify-content: center; color: rgb(255, 255, 255); -unity-font-style: bold-and-italic; font-size: 100px; width: 274px; align-items: auto; margin-top: 1200px; margin-left: 300px; margin-right: 0; padding-right: 0;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="BREAKER_TEXT_CONTAINER" style="position: absolute; right: 220px;">
+                <ui:Label tabindex="-1" text="BREAKER" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BREAKER" style="-unity-text-align: upper-center; justify-content: center; color: rgb(255, 255, 255); -unity-font-style: bold-and-italic; font-size: 100px; width: 580px; align-items: auto; margin-top: 1200px; margin-left: -80px; margin-right: 0;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="EmptyArea" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>
