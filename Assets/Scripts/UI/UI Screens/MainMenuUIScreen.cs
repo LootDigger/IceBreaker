@@ -6,7 +6,7 @@ namespace UI
 {
     public class MainMenuUIScreen : UIScreen
     {
-        private Button _playButton;
+        private readonly Button _playButton;
         private GameManager _gameManager;
         
         public MainMenuUIScreen(VisualElement root) : base(root)

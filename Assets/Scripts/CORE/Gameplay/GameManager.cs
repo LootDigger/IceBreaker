@@ -1,3 +1,4 @@
+using System;
 using CORE.GameManager;
 using CORE.GameStates;
 using CORE.Modules.Player.SM;
@@ -9,11 +10,15 @@ namespace CORE.Gameplay
 {
    public class GameManager : MonoBehaviour
    {
-      private GameWaiter _waiter;
+      [SerializeField]
+      private GameClock _clock;
+      
       private Score _score;
       private StateMachine _shipStateMachine;
       private StateMachine _coreStateMachine;
-
+      
+      public event Action<int> OnGameScoreChanged;
+      
       private void Start()
       {
          Init();
@@ -28,7 +33,6 @@ namespace CORE.Gameplay
       void Init()
       {
          ServiceLocator.RegisterService(this);
-         _waiter = new GameWaiter();
          _score = new Score();
          _shipStateMachine = ServiceLocator.GetService<ShipStateMachine>();
          _coreStateMachine = ServiceLocator.GetService<CoreStateMachine>();
@@ -37,11 +41,20 @@ namespace CORE.Gameplay
       private void SubscribeEvents()
       {
          _shipStateMachine.SubscribeStateEnter<SHIP_DeadState>(OnPlayerDeath);
+         _clock.OnSecondPassed += ClockOnOnSecondPassed;
       }
-      
+
       private void UnsubscribeEvents()
       {
          _shipStateMachine.UnsubscribeStateEnter<SHIP_DeadState>(OnPlayerDeath);
+         _clock.OnSecondPassed -= ClockOnOnSecondPassed;
+
+      }
+      
+      private void ClockOnOnSecondPassed(int currentScore)
+      {
+         _score.ScoreValue = currentScore;
+         OnGameScoreChanged.Invoke(currentScore);
       }
 
       public void StartGame()
@@ -52,12 +65,14 @@ namespace CORE.Gameplay
       
       private void OnGameStartedHandler()
       {
-         _waiter.StartWaiter();
+         _clock.StartClock();
+         OnGameScoreChanged.Invoke(0);
       }
 
       public void OnPlayerDeath()
       {
-         _score.ScoreValue = _waiter.StopWaiter();
+         _clock.StopClock();
+         _score.ScoreValue = _clock.SecondsElapsed;
       }
    }
 }

@@ -32,7 +32,7 @@ namespace CORE.Modules.Player.SM
         private void InitStateMachine()
         {
             RegisterState(new SHIP_IdleState(this,_playerRotation, _playerMovement));
-            RegisterState(new SHIP_GameInitState(this));
+            RegisterState(new SHIP_GameInitState(this,_playerHealth));
             RegisterState(new SHIP_ManualPilotState(this,_playerRotation, _playerMovement,_mapEdgeDetector));
             RegisterState(new SHIP_AutopilotState(this,_playerRotation));
             RegisterState(new SHIP_TakeDamageState(this,_playerHealth));

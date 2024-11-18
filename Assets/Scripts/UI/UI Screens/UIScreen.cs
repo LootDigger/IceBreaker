@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace UI
 {
-   public class UIScreen
+   public abstract class UIScreen
    {
       protected VisualElement _rootElement;
       public bool IsHidden => _rootElement.style.display == DisplayStyle.None;
@@ -17,15 +17,15 @@ namespace UI
          if (!hideOnInit) {return;}
          HideInstantly();
       }
-
-      public void HideInstantly()
-      {
-         _rootElement.style.display = DisplayStyle.None;
-      }
-
-      public void ShowInstantly()
+      
+      public virtual void ShowInstantly()
       {
          _rootElement.style.display = DisplayStyle.Flex;
+      }
+
+      public virtual void HideInstantly()
+      {
+         _rootElement.style.display = DisplayStyle.None;
       }
    }
 }

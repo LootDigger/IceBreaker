@@ -30,7 +30,6 @@ namespace CORE.Modules.ProceduralSystem
         
         private void SpawnIcebergs()
         {
-            Debug.Log("SpawnIcebergs");
             for (int i = 0; i < _enemyCount; i++)
             {
                 Vector3 position = ComposeSpawnPosition(_spawnRadius, transform.position);
@@ -40,7 +39,6 @@ namespace CORE.Modules.ProceduralSystem
 
         private void DisposeIcebergs()
         {
-            Debug.Log("DisposeIcebergs");
             if (_generatedIcebergs == null) { return; }
             foreach (var particle in _generatedIcebergs)
             {

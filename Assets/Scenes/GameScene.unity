@@ -1220,6 +1220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2102273378}
   - component: {fileID: 2102273379}
+  - component: {fileID: 2102273380}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1252,6 +1253,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e22878dec1b3984c84d1ea95ac490d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clock: {fileID: 2102273380}
+--- !u!114 &2102273380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102273377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9377c6e6cada8d04a95fabe9eb807ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2107478862
