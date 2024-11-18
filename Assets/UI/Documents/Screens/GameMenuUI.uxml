@@ -1,15 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/STYLES.uss?fileID=7433441132597879392&amp;guid=bfbec77692f4e594e9f356cea8de3ef6&amp;type=3#STYLES" />
-    <ui:VisualElement name="PLAY-GAME-UI" style="flex-grow: 1; width: 100%; height: 100%; opacity: 1; display: flex; visibility: visible;">
+    <ui:VisualElement name="PLAY-GAME-UI" style="flex-grow: 1; width: 100%; height: 100%; opacity: 1; display: flex; visibility: visible; position: relative;">
         <ui:VisualElement name="EMPTY-AREA" style="flex-grow: 1; height: 50%; width: 100%;" />
         <ui:VisualElement name="BUTTON-AREA" style="flex-grow: 1; height: 50%; width: 100%; justify-content: flex-start; align-items: center; margin-top: 0; padding-top: 400px; padding-bottom: 0;">
             <ui:Button text="PLAY" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PLAY-BUTTON" class="button-style" style="width: 500px; height: 200px; font-size: 50px; border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; border-bottom-left-radius: 50px; color: rgb(255, 255, 255); -unity-font-style: bold; background-color: rgb(178, 34, 34); text-overflow: clip; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
         </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="IN-GAME-UI" style="flex-grow: 1; display: flex;">
-        <ui:VisualElement name="SCORE-UI-AREA" style="flex-grow: 1; align-items: center; justify-content: flex-start; padding-top: 400px;">
-            <ui:Label tabindex="-1" text="15" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SCORE-TEXT" style="font-size: 100px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="EMPTY-AREA" style="flex-grow: 1;" />
     </ui:VisualElement>
 </ui:UXML>

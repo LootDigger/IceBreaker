@@ -710,7 +710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1492711922
 Transform:
   m_ObjectHideFlags: 0
@@ -985,7 +985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1879264705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 20737444ff015684dabc7bf0593a373a, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 3367d14a298fd6c42993b6eab4e23521, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: b8af37d2259c9734086febce5baa6ef7, type: 3}
   m_SortingOrder: 0
 --- !u!4 &1879264706
 Transform:
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879264704}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0eda5696993c8754495fd0432001d52a, type: 3}
   m_Name: 
@@ -1049,7 +1049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1902962404
 Transform:
   m_ObjectHideFlags: 0
@@ -1220,6 +1220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2102273378}
   - component: {fileID: 2102273379}
+  - component: {fileID: 2102273380}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1252,6 +1253,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e22878dec1b3984c84d1ea95ac490d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clock: {fileID: 2102273380}
+--- !u!114 &2102273380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102273377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9377c6e6cada8d04a95fabe9eb807ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2107478862

@@ -27,7 +27,7 @@ namespace CORE.Modules.Player.SM
 
         public void EnterState()
         {
-            Debug.Log("$ Enter State");
+          //  Debug.Log("$ Enter State");
             OnEnterStateEvent?.Invoke();
             SubscribeEvents();
             _playerRotation.SetManualPilotDriver();
@@ -37,7 +37,7 @@ namespace CORE.Modules.Player.SM
 
         public void ExitState()
         {
-            Debug.Log("$ Exit State");
+         //   Debug.Log("$ Exit State");
             OnExitStateEvent?.Invoke();
             UnsubscribeEvents();
         }

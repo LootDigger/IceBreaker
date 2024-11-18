@@ -24,6 +24,11 @@ namespace UI
             SubscribeGameEvents();
         }
 
+        private void Start()
+        {
+            
+        }
+
         private void OnDestroy() => UnsubscribeGameEvents();
         
         private void Init()

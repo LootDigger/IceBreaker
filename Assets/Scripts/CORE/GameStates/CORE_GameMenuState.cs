@@ -17,6 +17,7 @@ namespace CORE.GameStates
         public void EnterState()
         {
             OnEnterStateEvent?.Invoke();
+            UIEventDocker.OnMainMenuUIShown.Invoke();
         }
 
         public void ExitState()

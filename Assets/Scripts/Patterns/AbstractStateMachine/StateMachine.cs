@@ -23,8 +23,11 @@ namespace Patterns.AbstractStateMachine
             SetState(_states[typeof(TState)]);
         }
         
-        public void SetState(IState state)
+        public void SetState(IState state, bool debugSetState = false)
         {
+            if(debugSetState)
+                Debug.Log("SetState: " + state.GetType().Name);
+            
             if (_currentState != null)
             {
                 _currentState.ExitState();
