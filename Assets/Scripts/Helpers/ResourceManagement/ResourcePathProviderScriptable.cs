@@ -15,6 +15,8 @@ namespace Helpers.ResourceManagement
     
     private void OnValidate()
     {
+      #if UNITY_EDITOR
+      
       if(_targetResourceAsset == null) {return;}
       var assetPath = AssetDatabase.GetAssetPath(_targetResourceAsset);
       if (!IsResourcePath(assetPath))
@@ -24,6 +26,8 @@ namespace Helpers.ResourceManagement
         return;
       }
       _targetAssetPath = TrimResourcePath(assetPath);
+      
+      #endif
     }
 
     private string TrimResourcePath(string path)

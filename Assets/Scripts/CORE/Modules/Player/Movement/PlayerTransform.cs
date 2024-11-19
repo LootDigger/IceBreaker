@@ -17,7 +17,6 @@ public class PlayerTransform : MonoBehaviour
    [Sirenix.OdinInspector.Button]
    public void ResetTransform()
    {
-      Debug.Log("ResetTransform");
       _rootObjectTransform.position = _initTransform.position;
       _modelTransform.position = Vector3.zero;
       _rotationTransform.localRotation = _initTransform.localRotation;
