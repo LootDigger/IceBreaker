@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shipSpeed: 10
   _autopilotDuration: 1
+  _damageFreezeTime: 1

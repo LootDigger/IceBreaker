@@ -16,6 +16,8 @@ namespace CORE.Modules.ProceduralSystem
         [SerializeField]
         private float _spawnRadius = 10f;
         
+        private Collider _nonSpawnArea;
+        
         private PoolManager _poolManager;
         private AbstractPrefabFactory _icebergPrefabFactory;
         private readonly List<GameObject> _generatedIcebergs = new();
@@ -33,6 +35,10 @@ namespace CORE.Modules.ProceduralSystem
             for (int i = 0; i < _enemyCount; i++)
             {
                 Vector3 position = ComposeSpawnPosition(_spawnRadius, transform.position);
+                while (IsSpawnPosInNonSpawnArea(_nonSpawnArea,position))
+                {
+                    position = ComposeSpawnPosition(_spawnRadius, transform.position);
+                }
                 _generatedIcebergs.Add(_icebergPrefabFactory.Create(position));
             }
         }
@@ -53,9 +59,16 @@ namespace CORE.Modules.ProceduralSystem
             spawnPosition.y = 0f;
             return spawnPosition;
         }
+
+        private bool IsSpawnPosInNonSpawnArea(Collider nonSpawnArea, Vector3 point)
+        {
+            return nonSpawnArea.bounds.Contains(point);
+        }
         
         public void Generate() => SpawnIcebergs();
 
         public void Dispose() => DisposeIcebergs();
+
+        public void InjectNonSpawnArea(Collider collider) => _nonSpawnArea = collider;
     }
 }

@@ -16,6 +16,8 @@ namespace CORE.Modules.Procedural
         
         private GameObject _player;
         private bool _isGenerated;
+
+        public ChunkEnemyGenerator EnemyGenerator => _enemyGenerator;
         
         private void Awake()
         {
@@ -32,7 +34,7 @@ namespace CORE.Modules.Procedural
             }
             else if (CalculateDistanceToPlayer() > _generationSettings.DisposeDistance && _isGenerated)
             {
-                _isGenerated =  Dispose();
+                _isGenerated = Dispose();
             }
         }
 
