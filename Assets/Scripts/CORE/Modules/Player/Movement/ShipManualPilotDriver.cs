@@ -12,7 +12,7 @@ namespace Core.ShipControls
         public Vector3 GetDestination()
         {
             Vector3 targetPosition = Vector3.zero;
-#if !UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_WEBGL
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_WEBGL
             
             Vector3 mouseScreenPosition = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
@@ -33,7 +33,7 @@ namespace Core.ShipControls
             return targetPosition;
         }
         
-#if (UNITY_ANDROID || UNITY_IOS) && UNITY_EDITOR 
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR 
         private Vector2 _cachedTouchPosition;
 
         private Vector2 GetTouchPosition()
