@@ -120,6 +120,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 98e0462c44f4c3a44a786a3994fc5092, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5454418549671051393}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 98e0462c44f4c3a44a786a3994fc5092, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7827140762418123078}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 98e0462c44f4c3a44a786a3994fc5092, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2991931699565082056}
   m_SourcePrefab: {fileID: 100100000, guid: 98e0462c44f4c3a44a786a3994fc5092, type: 3}
 --- !u!4 &319060341985251423 stripped
 Transform:
@@ -143,6 +149,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcd0358efa99c54e97b96f01791ef3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPlayerCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7827140762418123078}
+        m_TargetAssemblyTypeName: AnimationInvoker, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &5454418549671051393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -164,3 +185,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0412974, y: 4.6881113, z: 6.7474546}
   m_Center: {x: 0.012821913, y: -0.016885519, z: 0.26426435}
+--- !u!114 &7827140762418123078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091655738851478245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe747683115be741b2ec1c61b924656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationReference: {fileID: 2991931699565082056}
+--- !u!114 &2991931699565082056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091655738851478245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e879eab61495504cb175302fa90ed12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

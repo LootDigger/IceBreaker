@@ -19,9 +19,12 @@ namespace CORE.Modules.Player.Movement
             if(_isMovementBlocked) {return;}
             MoveShip();
         }
-        
-        public void SetMovementBlock(bool isMovementBlocked) => _isMovementBlocked = isMovementBlocked;
-        
+
+        public void SetMovementBlock(bool isMovementBlocked)
+        {
+            _isMovementBlocked = isMovementBlocked;
+        }
+
         private void MoveShip() => transform.Translate(Vector3.forward * _shipStaticDataProvider.Data.ShipSpeed * Time.deltaTime);
     }
 }

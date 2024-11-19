@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1153904083365090780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 156714445334538984}
+  - component: {fileID: 2788797623136356886}
+  - component: {fileID: 4398208410728175922}
+  m_Layer: 3
+  m_Name: ShipSinkAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &156714445334538984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153904083365090780}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8254768017487002261}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2788797623136356886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153904083365090780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe747683115be741b2ec1c61b924656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationReference: {fileID: 4398208410728175922}
+--- !u!114 &4398208410728175922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153904083365090780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85f74a16efc22244b2090a66613a243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 5434203472897165594}
+  _duration: 1
 --- !u!1 &5319841624914249461
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +104,117 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5943995674ecb4547b9bd0b7f53e79a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5400600510791430024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8254768017487002261}
+  - component: {fileID: 2448199127816296781}
+  m_Layer: 3
+  m_Name: Animation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8254768017487002261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400600510791430024}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5419258700969970994}
+  - {fileID: 156714445334538984}
+  m_Father: {fileID: 5791917182447919305}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2448199127816296781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400600510791430024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fcb59462bf7844781543ad4bbf9780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shipDamageAnimation: {fileID: 2646699917237339445}
+  _shipSinkAnimation: {fileID: 0}
+--- !u!1 &7346341359825054162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5419258700969970994}
+  - component: {fileID: 566274583585671659}
+  - component: {fileID: 2646699917237339445}
+  m_Layer: 3
+  m_Name: ShipDamageAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5419258700969970994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7346341359825054162}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8254768017487002261}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566274583585671659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7346341359825054162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b08f5ff0044e4a4eb9492726a185b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 5434203472897165594}
+  _strength: {x: 10, y: 0, z: 20}
+  _vibrato: 10
+  _randomness: 5
+  _duration: 1.5
+--- !u!114 &2646699917237339445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7346341359825054162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe747683115be741b2ec1c61b924656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationReference: {fileID: 566274583585671659}
 --- !u!1 &8339835794682618316
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +254,7 @@ Transform:
   m_Children:
   - {fileID: 5434203472897165594}
   - {fileID: 5238726811204630077}
+  - {fileID: 8254768017487002261}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &6461442828240890018
@@ -161,7 +333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6e537dd51089345963b208b4f0b2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 10
 --- !u!114 &6686521455364900719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,15 +667,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 958b2a0ea79b9e743a8fee67067cde20, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.000000019041224
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 958b2a0ea79b9e743a8fee67067cde20, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.44102123
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 958b2a0ea79b9e743a8fee67067cde20, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.48145396
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 958b2a0ea79b9e743a8fee67067cde20, type: 3}
       propertyPath: m_LocalRotation.w

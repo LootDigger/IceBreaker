@@ -11,7 +11,11 @@ namespace CORE.Modules.Player
        [SerializeField]
        private float _autopilotDuration = 2f;
        
+       [SerializeField]
+       private float _damageFreezeTime = 1.5f;
+       
        public float ShipSpeed => _shipSpeed;
        public float AutopilotDuration => _autopilotDuration;
+       public float DamageFreezeTime => _damageFreezeTime;
     }
 }

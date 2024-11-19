@@ -20,12 +20,14 @@ namespace CORE.Modules.Player.SM
         private readonly PlayerRotation _playerRotation;
         private readonly PlayerMovement _playerMovement;
         private readonly CoreStateMachine _coreStateMachine;
+        private readonly AnimationInvoker _sinkAnimation;
 
-        public SHIP_DeadState(StateMachine machine, PlayerRotation playerRotation,PlayerMovement playerMovement)
+        public SHIP_DeadState(StateMachine machine, PlayerRotation playerRotation,PlayerMovement playerMovement, AnimationInvoker sinkAnimation)
         {
             StateMachine = machine;
             _playerRotation = playerRotation;
             _playerMovement = playerMovement;
+            _sinkAnimation = sinkAnimation;
             _coreStateMachine = ServiceLocator.GetService<CoreStateMachine>();
             _commandExecuter = ServiceLocator.GetService<CommandExecuter>();
         }
@@ -33,6 +35,7 @@ namespace CORE.Modules.Player.SM
         public void EnterState()
         {
             OnEnterStateEvent?.Invoke();
+            _sinkAnimation.Play();
             _playerRotation.SetRotationBlock(true);
             _playerMovement.SetMovementBlock(true);
             _coreStateMachine.SetState<CORE_GameOverState>();

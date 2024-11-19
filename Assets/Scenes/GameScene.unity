@@ -432,6 +432,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1967686131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1012171888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1012171889}
+  m_Layer: 0
+  m_Name: ShipInitTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1012171889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012171888}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!1 &1112502688
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,7 +689,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1401607626}
-  - component: {fileID: 1401607625}
   m_Layer: 0
   m_Name: IceSpawner
   m_TagString: Untagged
@@ -666,18 +696,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1401607625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401607624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 698a18c56c8907445a77b07aa7043e92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1401607626
 Transform:
   m_ObjectHideFlags: 0
@@ -1175,7 +1193,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031878050}
-  - component: {fileID: 2031878051}
   m_Layer: 0
   m_Name: IcebergSpawner
   m_TagString: Untagged
@@ -1198,18 +1215,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2107478864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2031878051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031878049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343f59a9531fe584592f91ce00e8d2be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2102273377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1404,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2448199127816296781, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+      propertyPath: _shipSinkAnimation
+      value: 
+      objectReference: {fileID: 2128165156304982121}
+    - target: {fileID: 5434203472897165594, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5434203472897165594, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5434203472897165594, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5791917182447919305, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1446,8 +1467,48 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4621251669958235040, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2128165156304982123}
   m_SourcePrefab: {fileID: 100100000, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+--- !u!114 &2128165156304982121 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2788797623136356886, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+  m_PrefabInstance: {fileID: 2128165156304982120}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe747683115be741b2ec1c61b924656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2128165156304982122 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4621251669958235040, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+  m_PrefabInstance: {fileID: 2128165156304982120}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2128165156304982123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128165156304982122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81f939c7c900224fa7850a61bf350f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rootObjectTransform: {fileID: 1509748625}
+  _modelTransform: {fileID: 2128165156304982124}
+  _rotationTransform: {fileID: 2128165156304982124}
+  _initTransform: {fileID: 1012171889}
+--- !u!4 &2128165156304982124 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5434203472897165594, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+  m_PrefabInstance: {fileID: 2128165156304982120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2796640502917493939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,3 +1542,4 @@ SceneRoots:
   - {fileID: 448268611}
   - {fileID: 1701938858}
   - {fileID: 1879264706}
+  - {fileID: 1012171889}

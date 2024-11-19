@@ -18,9 +18,9 @@ namespace Patterns.AbstractStateMachine
             _states.Add(state.GetType(), state);
         }
 
-        public void SetState<TState>() where TState : IState
+        public void SetState<TState>(bool debugSetState = false) where TState : IState
         {
-            SetState(_states[typeof(TState)]);
+            SetState(_states[typeof(TState)],debugSetState);
         }
         
         public void SetState(IState state, bool debugSetState = false)

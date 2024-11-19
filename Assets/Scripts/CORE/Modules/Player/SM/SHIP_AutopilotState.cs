@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using CORE.Modules.Player.Movement;
 using CORE.Systems.PlayerSystem.Movement;
 using Patterns.AbstractStateMachine;
 using Patterns.ServiceLocator;
@@ -9,6 +10,7 @@ namespace CORE.Modules.Player.SM
 {
     public class SHIP_AutopilotState : IState
     {
+        private readonly PlayerMovement _playerMovement;
         private readonly PlayerRotation _playerRotation;
         private readonly ShipStaticDataProvider _shipStaticDataProvider;
 
@@ -16,9 +18,10 @@ namespace CORE.Modules.Player.SM
         public Action OnEnterStateEvent { get; set; }
         public Action OnExitStateEvent { get; set; }
 
-        public SHIP_AutopilotState(StateMachine currentSM, PlayerRotation playerRotation)
+        public SHIP_AutopilotState(StateMachine currentSM, PlayerMovement playerMovement, PlayerRotation playerRotation)
         {
             StateMachine = currentSM;
+            _playerMovement = playerMovement;
             _playerRotation = playerRotation;
             _shipStaticDataProvider = ServiceLocator.GetService<ShipStaticDataProvider>();
         }
@@ -26,6 +29,8 @@ namespace CORE.Modules.Player.SM
         public void EnterState()
         {
             OnEnterStateEvent?.Invoke();
+            _playerMovement.SetMovementBlock(false);
+            _playerRotation.SetRotationBlock(false);
             _playerRotation.SetAutopilotDriver();
             StartAutopilotCountDown();
         }
@@ -37,7 +42,6 @@ namespace CORE.Modules.Player.SM
 
         private async Task StartAutopilotCountDown()
         {
-            Debug.Log("autopilot dur: " + (int)(_shipStaticDataProvider.Data.AutopilotDuration * 1000));
             await Task.Delay((int)(_shipStaticDataProvider.Data.AutopilotDuration * 1000));
             SetControlsToManual();
         }

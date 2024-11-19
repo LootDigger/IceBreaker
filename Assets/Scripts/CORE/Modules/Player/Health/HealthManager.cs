@@ -10,6 +10,7 @@ namespace CORE.Systems.PlayerSystem.Health
         private int _maxHealthPoints = 3;
         
         private int _currentHealthPoints;
+        public Action OnHealthDecreased;
         public Action OnHealthReachedDeadPoint;
 
         private void Awake()
@@ -24,7 +25,9 @@ namespace CORE.Systems.PlayerSystem.Health
             if (_currentHealthPoints <= 0)
             {
                 OnHealthReachedDeadPoint?.Invoke();
+                return;
             }
+            OnHealthDecreased?.Invoke();
         }
 
         public void ResetHealthPoints()

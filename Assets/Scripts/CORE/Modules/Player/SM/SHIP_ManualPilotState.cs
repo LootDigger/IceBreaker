@@ -27,17 +27,15 @@ namespace CORE.Modules.Player.SM
 
         public void EnterState()
         {
-          //  Debug.Log("$ Enter State");
             OnEnterStateEvent?.Invoke();
             SubscribeEvents();
-            _playerRotation.SetManualPilotDriver();
             _playerRotation.SetRotationBlock(false);
             _playerMovement.SetMovementBlock(false);
+            _playerRotation.SetManualPilotDriver();
         }
 
         public void ExitState()
         {
-         //   Debug.Log("$ Exit State");
             OnExitStateEvent?.Invoke();
             UnsubscribeEvents();
         }
@@ -59,7 +57,6 @@ namespace CORE.Modules.Player.SM
 
         private void OnMapEdgeReachedHandler()
         {
-            Debug.Log("$ SHIP_ManualPilotState: OnMapEdgeReachedHandler");
             StateMachine.SetState<SHIP_AutopilotState>();
         }
     }
