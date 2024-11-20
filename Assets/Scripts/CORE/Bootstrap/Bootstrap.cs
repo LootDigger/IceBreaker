@@ -28,7 +28,7 @@ namespace CORE.Bootstrap
         private PrefabResourceLoader _resourceLoader;
         private MaterialInstanceProvider _materialInstanceProvider;
         
-        private void Start() => Init();
+        private void Awake() => Init();
 
         private void Init()
         {
@@ -63,7 +63,7 @@ namespace CORE.Bootstrap
         {
             CoreStateMachine stateMachine = new CoreStateMachine();
             ServiceLocator.RegisterService(stateMachine);
-            stateMachine.SetState<CORE_InitState>();
+            stateMachine.SetState<CORE_InitState>(true);
         }
         
         

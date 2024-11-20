@@ -7,6 +7,7 @@ namespace CORE.Modules.Player.SM
     {
         private void Start()
         {
+            Debug.Log("### Ship SM Initializer");
             ServiceLocator.RegisterService(new ShipStateMachine());
         }
     }

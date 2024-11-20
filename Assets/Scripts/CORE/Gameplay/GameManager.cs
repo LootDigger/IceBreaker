@@ -34,6 +34,8 @@ namespace CORE.Gameplay
       {
          ServiceLocator.RegisterService(this);
          _score = new Score();
+         Debug.Log("### Try get Ship SM");
+
          _shipStateMachine = ServiceLocator.GetService<ShipStateMachine>();
          _coreStateMachine = ServiceLocator.GetService<CoreStateMachine>();
       }

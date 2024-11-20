@@ -17,6 +17,8 @@ namespace Core.Behaviours
         void Update()
         {
             float3[] edges = _behaviourManager.GetShipEdges();
+            if(edges == null) {return;}
+
             for (int i = 0; i < edges.Length; i++)
             {
                 IceCrackFleeBehaviourJob job = new IceCrackFleeBehaviourJob()

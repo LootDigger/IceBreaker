@@ -2,6 +2,7 @@ using System;
 using Patterns.AbstractStateMachine;
 using System.Threading.Tasks;
 using Scene_Management;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CORE.GameStates
@@ -32,18 +33,35 @@ namespace CORE.GameStates
 
         private async Task InitState()
         {
-            UIEventDocker.OnLoadingUIShown.Invoke();
-            await InitWaiter();
-            await LoadGameScene();
+            try
+            {
+                UIEventDocker.OnLoadingUIShown?.Invoke();
+                await InitWaiter();
+                await LoadGameScene();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+                throw;
+            }
         }
 
         private async Task LoadGameScene()
         {
-            await _sceneLoader.LoadScene(new LoadSceneRequest()
+            try
             {
-                SceneName = PersistantScenes.MAIN_GAME_SCENE,
-                LoadSceneMode = LoadSceneMode.Single
-            }, OnSceneLoadedCallback);
+                await _sceneLoader.LoadScene(new LoadSceneRequest()
+                {
+                    SceneName = PersistantScenes.MAIN_GAME_SCENE,
+                    LoadSceneMode = LoadSceneMode.Single
+                }, OnSceneLoadedCallback);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+                throw;
+            }
+           
         }
 
         private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
@@ -54,9 +72,17 @@ namespace CORE.GameStates
 
         private async Task InitWaiter()
         {
-            //TODO: Fix Magic number
-            GameInitWaiter dummyWaiter = new GameInitWaiter(5000);
-            await dummyWaiter.WaitForGameLoad();
+            try
+            {
+                //TODO: Fix Magic number
+                GameInitWaiter dummyWaiter = new GameInitWaiter(5000);
+                await dummyWaiter.WaitForGameLoad();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+                throw;
+            }
         }
 
         private class GameInitWaiter

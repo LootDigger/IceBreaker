@@ -1395,10 +1395,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 566274583585671659, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+      propertyPath: _duration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2448199127816296781, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
       propertyPath: _shipSinkAnimation
       value: 
       objectReference: {fileID: 2128165156304982121}
+    - target: {fileID: 4398208410728175922, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
+      propertyPath: _duration
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5434203472897165594, guid: 3331ed72e8c9ed442a63cfd4b3a01aad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

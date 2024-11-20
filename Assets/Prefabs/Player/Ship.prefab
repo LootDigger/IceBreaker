@@ -198,10 +198,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 5434203472897165594}
-  _strength: {x: 10, y: 0, z: 20}
+  _strength: {x: 20, y: 0, z: 0}
   _vibrato: 10
   _randomness: 5
-  _duration: 1.5
+  _duration: 0.5
 --- !u!114 &2646699917237339445
 MonoBehaviour:
   m_ObjectHideFlags: 0
