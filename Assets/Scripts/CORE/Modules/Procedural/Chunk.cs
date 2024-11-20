@@ -23,10 +23,8 @@ namespace CORE.Modules.Procedural
         {
             _player = ServiceLocator.GetService<Player.Player>().gameObject;
         }
-
-        private void Update() => UpdateChunkRoutine();
-
-        private void UpdateChunkRoutine()
+        
+        public void UpdateChunkRoutine()
         {
             if (CalculateDistanceToPlayer() < _generationSettings.GenerateDistance && !_isGenerated)
             {

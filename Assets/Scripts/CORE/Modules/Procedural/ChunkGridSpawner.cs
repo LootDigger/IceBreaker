@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CORE.Modules.Procedural;
 using UnityEngine;
@@ -16,9 +17,19 @@ namespace Core.Procedural.World
         [SerializeField]
         private Collider _nonSpawnArea;
         
+        private List<Chunk> _chunks = new();
+        
         void Start()
         {
             SpawnZones();
+        }
+
+        private void Update()
+        {
+            foreach (var chunk in _chunks)
+            {
+                chunk.UpdateChunkRoutine();
+            }
         }
 
         private void OnDrawGizmos()
@@ -40,6 +51,7 @@ namespace Core.Procedural.World
                     Vector3 position = new Vector3(x * _zoneWidth, 0, z * _zoneWidth);
                     var chunk = Instantiate(_chunkZone, initPoint + position, Quaternion.identity, transform).GetComponent<Chunk>();
                     chunk.EnemyGenerator.InjectNonSpawnArea(_nonSpawnArea);
+                    _chunks.Add(chunk);
                 }
             }
         }
