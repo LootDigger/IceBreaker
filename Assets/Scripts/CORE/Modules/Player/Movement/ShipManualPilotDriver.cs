@@ -4,6 +4,13 @@ namespace Core.ShipControls
 {
     public class ShipManualPilotDriver : IControlDriver
     {
+        private Camera _camera;
+        
+        public ShipManualPilotDriver()
+        {
+            _camera = Camera.main;
+        }
+        
         public Quaternion GetRotation(Transform playerTransform)
         {
             return CalculateRotation(playerTransform,GetDestination());
@@ -15,11 +22,11 @@ namespace Core.ShipControls
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_WEBGL
             
             Vector3 mouseScreenPosition = Input.mousePosition;
-            Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
+            Ray ray = _camera.ScreenPointToRay(mouseScreenPosition);
 #elif UNITY_ANDROID || UNITY_IOS
 
             Vector2 touchPosition = GetTouchPosition();
-            Ray ray = Camera.main.ScreenPointToRay(touchPosition);
+            Ray ray = _camera.ScreenPointToRay(touchPosition);
 #endif
             
             LayerMask mask = LayerMask.GetMask("Water");

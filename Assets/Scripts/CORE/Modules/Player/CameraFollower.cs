@@ -1,28 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
+using Patterns.ServiceLocator;
 using UnityEngine;
 
-//[ExecuteInEditMode]
-public class CameraFollower : MonoBehaviour
+namespace Core.PlayerCamera
 {
-    public Transform target;  // The character the camera will follow
-    public Vector3 offset;    // Offset distance between the camera and the character
-    public float smoothSpeed = 0.125f;  // Smooth speed of camera movement
-
-    void LateUpdate()
+    public class CameraFollower : MonoBehaviour,ICameraFollower
     {
-        if (target == null) return; // Make sure there is a target to follow
+        [SerializeField] private Transform _followTarget;
+        [SerializeField] private Vector3 _offset;
+        [SerializeField] private float _smoothSpeed = 0.125f;
 
-        // Desired position is the target's position plus the offset
-        Vector3 desiredPosition = target.position + offset;
+        private bool _followPlayer = true;
+        
+        private void Awake()
+        {
+            ServiceLocator.RegisterService<ICameraFollower>(this);
+        }
 
-        // Smoothly interpolate between the camera's current position and the desired position
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        void LateUpdate()
+        {
+            if (_followTarget == null || !_followPlayer) return;
+            transform.position = ComposeDeltaPosition();
+            LookAtTarget();
+        }
+        
+        public void SetTargetFollowState(bool isFollowing)
+        {
+            _followPlayer = isFollowing;
+        }
 
-        // Update the camera's position
-        transform.position = smoothedPosition;
+        [Sirenix.OdinInspector.Button]
+        public void ResetTransform()
+        {
+            transform.position = ComposeDesiredPosition();
+            LookAtTarget();
+        }
 
-        // Optionally, make the camera look at the target
-        transform.LookAt(target);
+        private void LookAtTarget() => transform.LookAt(_followTarget);
+        private Vector3 ComposeDesiredPosition() => _followTarget.position + _offset;
+        private Vector3 ComposeDeltaPosition() =>
+            Vector3.Lerp(transform.position, ComposeDesiredPosition(), _smoothSpeed);
+    }
+
+    public interface ICameraFollower
+    {
+        void SetTargetFollowState(bool isFollowing);
+        void ResetTransform();
     }
 }
