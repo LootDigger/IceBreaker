@@ -26,8 +26,7 @@ namespace CORE.Systems.PlayerSystem
         void Init() => _shipEdges = _splineContainer.Splines[0].Knots;
 
         private void UpdateShipEdgePositions() => _globalShipEdges = TransformToGlobalPos(GetLocalShipEdges());
-    
-    
+        
         private float3[] GetLocalShipEdges() => _shipEdges.Select(knot => knot.Position).ToArray();
     
         private float3[] TransformToGlobalPos(float3[] localPositions)

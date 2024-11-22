@@ -4,6 +4,6 @@ namespace Helpers.PrefabFabric
 {
     public interface IPrefabInstantiator 
     {
-        public GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation);
+        public GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation, bool shouldBeActive = true);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CORE.Modules.ProceduralSystem
@@ -14,6 +15,8 @@ namespace CORE.Modules.ProceduralSystem
       [Header("PARTICLE SETTINGS")]
       [SerializeField] private int _particlesCount;
       [SerializeField] private float _particleSpawnRadius;
+
+      [SerializeField] private List<GameObject> _particleVariants;
       
    
       public int ParticlesCount => _particlesCount;

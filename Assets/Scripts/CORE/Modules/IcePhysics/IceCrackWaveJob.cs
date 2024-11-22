@@ -16,6 +16,7 @@ namespace Core.Jobs
 
         public void Execute(int index, TransformAccess transform)
         {
+            if(!transform.isValid) { return; }
             float distance = math.distance(transform.position, shipEdge);
             float normalizedDistance = math.unlerp(0, collisionDistance, distance);
 

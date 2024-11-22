@@ -3,7 +3,6 @@ using CORE.Modules.IceBehaviourSystem;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Jobs;
-using UnityEngine.Serialization;
 
 namespace Core.Behaviours
 {

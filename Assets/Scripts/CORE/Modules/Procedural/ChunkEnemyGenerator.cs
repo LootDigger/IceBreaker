@@ -15,7 +15,7 @@ namespace CORE.Modules.ProceduralSystem
         private int _enemyCount = 1;
         [SerializeField]
         private float _spawnRadius = 10f;
-        
+        [SerializeField]
         private Collider _nonSpawnArea;
         
         private PoolManager _poolManager;
@@ -68,7 +68,7 @@ namespace CORE.Modules.ProceduralSystem
         public void Generate() => SpawnIcebergs();
 
         public void Dispose() => DisposeIcebergs();
-
-        public void InjectNonSpawnArea(Collider collider) => _nonSpawnArea = collider;
+        
+        public void InjectNonSpawnCollider(Collider nonSpawnAreaCollider) => _nonSpawnArea = nonSpawnAreaCollider;
     }
 }

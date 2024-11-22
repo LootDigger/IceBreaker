@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcd0358efa99c54e97b96f01791ef3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collder: {fileID: 5454418549671051393}
   OnPlayerCollision:
     m_PersistentCalls:
       m_Calls:
@@ -210,3 +211,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e879eab61495504cb175302fa90ed12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _duration: 0.5

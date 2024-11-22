@@ -300,14 +300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolRequests:
-  - prefab: {fileID: 224161836393777526, guid: 7fd1269d89f01a74290efd3584dcca2b, type: 3}
-    poolSize: 100
-  - prefab: {fileID: 7036643031433313510, guid: 2fa7b77802beacb47b2977797ed7688b, type: 3}
-    poolSize: 100
-  - prefab: {fileID: 9084809004102718766, guid: e7232eb6e8ee116498a8241c063ee5a9, type: 3}
-    poolSize: 100
-  - prefab: {fileID: 3048134331658682525, guid: e09c8cc5575a8be49bad32256872bb61, type: 3}
-    poolSize: 100
   - prefab: {fileID: 1091655738851478245, guid: 3a6294eab4b32014f81712f23d098341, type: 3}
     poolSize: 10
   - prefab: {fileID: 7239153636447766933, guid: 4d04afdceddaaeb49b428086fe108607, type: 3}

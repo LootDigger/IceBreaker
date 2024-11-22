@@ -70,26 +70,26 @@ namespace CORE.Bootstrap
         // TODO: Create method for factory creation
         private void RegisterIcePrefabFactory()
         {
-            IceParticlesVariantsProvider prefabsProvider = new IceParticlesVariantsProvider();
-            IceFactoryObjectsKeeper objectsKeeper = new IceFactoryObjectsKeeper();
+            IceParticlesVariantsProvider prefabsProvider = new();
+            IceFactoryObjectsKeeper objectsKeeper = new();
             foreach (var variant in _icePrefabVariants)
             {
                 prefabsProvider.AddVariant(variant);
             }
-            IcePrefabFactory icePrefabFactory = new IcePrefabFactory(_instantiator, _resourceLoader, prefabsProvider,_materialInstanceProvider,objectsKeeper);
+            IcePrefabFactory icePrefabFactory = new(_instantiator, _resourceLoader, prefabsProvider,_materialInstanceProvider,objectsKeeper);
             ServiceLocator.RegisterService(icePrefabFactory);
             ServiceLocator.RegisterService(objectsKeeper);
         }
         
         private void RegisterIcebergPrefabFactory()
         {
-            IcebergVariantsProvider prefabsProvider = new IcebergVariantsProvider();
-            IcebergFactoryObjectsKeeper objectsKeeper = new IcebergFactoryObjectsKeeper();
+            IcebergVariantsProvider prefabsProvider = new();
+            IcebergFactoryObjectsKeeper objectsKeeper = new();
             foreach (var variant in _icebergPrefabVariants)
             {
                 prefabsProvider.AddVariant(variant);
             }
-            IcebergPrefabFactory icePrefabFactory = new IcebergPrefabFactory(_instantiator, _resourceLoader, prefabsProvider,_materialInstanceProvider,objectsKeeper);
+            IcebergPrefabFactory icePrefabFactory = new(_instantiator, _resourceLoader, prefabsProvider,_materialInstanceProvider,objectsKeeper);
             ServiceLocator.RegisterService(icePrefabFactory);
             ServiceLocator.RegisterService(prefabsProvider);
         }

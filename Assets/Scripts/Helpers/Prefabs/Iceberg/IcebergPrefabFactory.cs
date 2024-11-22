@@ -22,12 +22,12 @@ namespace Helpers.Prefabs
             _objectsKeeper = objectsKeeper;
         }
         
-        public override GameObject Create(Vector3 position)
+        public override GameObject Create(Vector3 position, bool shouldBeActive = true)
         {
             try
             {
                 GameObject prefab = LoadPrefab();
-                GameObject objectInstance = InstantiatePrefab(prefab, position, Quaternion.identity);
+                GameObject objectInstance = InstantiatePrefab(prefab, position, Quaternion.identity,shouldBeActive);
                 objectInstance.GetComponentInChildren<MeshRenderer>().sharedMaterial = _materialInstanceProvider.GetMaterialInstance(prefab);
                 _objectsKeeper.AddObject(objectInstance);
                 return objectInstance;

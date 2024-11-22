@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f2d3bcb6023894aba0c21988d6f538, type: 3}
   m_Name: Ice_Var4_ResourceProvider
   m_EditorClassIdentifier: 
-  _targetResourceAsset: {fileID: 224161836393777526, guid: 7fd1269d89f01a74290efd3584dcca2b, type: 3}
-  _targetAssetPath: SubFolder/Ice_Var1
+  _targetResourceAsset: {fileID: 3048134331658682525, guid: e09c8cc5575a8be49bad32256872bb61, type: 3}
+  _targetAssetPath: Ice_Var4

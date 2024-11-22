@@ -1,24 +1,38 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Helpers.Prefabs
 {
     public class IceFactoryObjectsKeeper : IFactoryObjectsKeeper<Transform>
     {
-        private readonly List<Transform> _factoryObjects = new();
+        private readonly Transform[] _spawnedIceObjects;
+        private readonly int _maxCount = 1000;
+        
+        private int _index = 0;
+        
+        public IceFactoryObjectsKeeper()
+        {
+            _spawnedIceObjects = new Transform[_maxCount];
+        }
+        
         public void AddObject(Transform obj)
         {
-            _factoryObjects.Add(obj);
+            AssignValue(obj);
         }
 
         public void RemoveObject(Transform obj)
         {
-            _factoryObjects.Remove(obj);
         }
 
         public Transform[] GetObjects()
         {
-            return _factoryObjects.ToArray();
+            return _spawnedIceObjects;
+        }
+
+        
+        private void AssignValue(Transform obj)
+        {
+            _spawnedIceObjects[_index] = obj;
+            _index++;
         }
     }
 }

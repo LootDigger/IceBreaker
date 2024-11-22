@@ -49,7 +49,7 @@ namespace CORE.Modules.Procedural
         }
         
         private bool Dispose()
-        {            
+        {       
             _particlesGenerator.Dispose();
             _enemyGenerator.Dispose();
             return false;

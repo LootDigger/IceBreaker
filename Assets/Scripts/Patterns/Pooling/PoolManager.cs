@@ -1,18 +1,27 @@
-using System;
 using System.Collections.Generic;
 using Patterns.ServiceLocator;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Core.Procedural.PoolManager
 {
-    
     public class PoolManager : MonoBehaviour
     {
-        [SerializeField]
-        private List<PoolRequest> _poolRequests = new List<PoolRequest>();
+        public struct Pool
+        {
+            public Transform poolParentGO;
+            public List<GameObject> pooledObjects;
+
+            public Pool(Transform parentGo, List<GameObject> pooledObjectObjects)
+            {
+                poolParentGO = parentGo;
+                pooledObjects = pooledObjectObjects;
+            }
+        }
         
-        private Dictionary<int,List<GameObject>> pools = new();
+        [SerializeField]
+        private List<PoolRequest> _poolRequests = new();
+        
+        private Dictionary<int,Pool> _pools = new();
         
         private void Awake()
         {
@@ -21,17 +30,25 @@ namespace Core.Procedural.PoolManager
             DontDestroyOnLoad(this);
         }
 
-        private void CreatePool(GameObject prefab, int poolSize)
+        public void CreatePool(GameObject prefab, int poolSize)
         {
-            List<GameObject> pool = new();
-            GameObject poolParent = new GameObject(prefab.name + "_POOL");
+            if (IsPoolExists(prefab))
+            {
+                Debug.LogWarning("Pool of gameObject " +prefab.name+ " already exists!");
+                return;
+            }
+            
+            List<GameObject> poolObjects = new();
+            GameObject poolParent = new(prefab.name + "_POOL");
             poolParent.transform.SetParent(transform);
             poolParent.transform.position = new Vector3(1000, 1000, 1000);
             for (int i = 0; i < poolSize; i++)
             {
-                pool.Add(InstantiatePoolGameObject(prefab,poolParent.transform));
+                poolObjects.Add(InstantiatePoolGameObject(prefab,poolParent.transform));
             }
-            pools.Add(prefab.GetHashCode(), pool);
+            
+            Pool pool = new Pool(poolParent.transform,poolObjects);
+            _pools.Add(prefab.GetHashCode(), pool);
         }
 
         private void InitializePoolRequests()
@@ -43,25 +60,26 @@ namespace Core.Procedural.PoolManager
             }
         }
 
-        public GameObject Instantiate(GameObject prefab)
+        public GameObject Instantiate(GameObject prefab, bool isActive = true)
         {
             if (!IsPoolExists(prefab))
             {
-                Debug.LogError("Pool for object " + prefab.name+" isn't registered. Return NULL");
-                return null;
+                Debug.LogWarning("Pool for object " + prefab.name+" isn't registered. Create new Pool of size 1 and try again");
+                CreatePool(prefab,1);
+                return Instantiate(prefab,isActive);
             }
 
-            if (IsPoolEmpty(pools[prefab.GetHashCode()]))
+            if (IsPoolEmpty(_pools[prefab.GetHashCode()].pooledObjects))
             {
                 Debug.LogWarning("Pool for object " + prefab.name + " is empty. Return new instance");
-                return ReturnNewPoolObject(prefab);
+                return ReturnNewPoolObject(prefab,isActive);
             }
 
-            GameObject result = TryGetGameObjectFromPool(prefab);
+            GameObject result = TryGetGameObjectFromPool(prefab,isActive);
             if (result == null)
             { 
                 Debug.LogWarning("No free gameObjects in pool " + prefab.name + ". Return new instance");
-               return ReturnNewPoolObject(prefab);
+                return ReturnNewPoolObject(prefab,isActive);
             }
 
             return result;
@@ -93,31 +111,39 @@ namespace Core.Procedural.PoolManager
             return poolObject;
         }
 
-        private GameObject TryGetGameObjectFromPool(GameObject prefab)
+        private GameObject TryGetGameObjectFromPool(GameObject prefab, bool isActive = true)
         {
-            var instances = pools[prefab.GetHashCode()];
+            var instances = _pools[prefab.GetHashCode()].pooledObjects;
             GameObject result = null;
             for (int i = 0; i < instances.Count; i++)
             {
                 if (!instances[i].activeSelf)
                 {
-                    result = UnpackPoolObject(instances[i].gameObject);
+                    if (isActive)
+                    {
+                        result = UnpackPoolObject(instances[i].gameObject);
+                    }
                     return result;
                 }
             }
             return null;
         }
 
-        private GameObject ReturnNewPoolObject(GameObject prefab)
+        private GameObject ReturnNewPoolObject(GameObject prefab, bool shouldBeActive = true)
         {
-            var go = UnpackPoolObject(InstantiatePoolGameObject(prefab));
-            pools[prefab.GetHashCode()].Add(go);
-            return go;
+            Pool pool = _pools[prefab.GetHashCode()];
+            var gameObject = InstantiatePoolGameObject(prefab, pool.poolParentGO);
+            if (shouldBeActive)
+            {
+                gameObject = UnpackPoolObject(gameObject);
+            }
+            pool.pooledObjects.Add(gameObject);
+            return gameObject;
         }
         
         private bool IsPoolEmpty(List<GameObject> instances) => instances.Count == 0;
         
-        private bool IsPoolExists(GameObject prefab) => pools.ContainsKey(prefab.GetHashCode());
+        private bool IsPoolExists(GameObject prefab) => _pools.ContainsKey(prefab.GetHashCode());
     }
 
     [System.Serializable]
