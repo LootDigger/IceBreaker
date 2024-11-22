@@ -7,8 +7,6 @@ namespace CORE.GameStates
 {
     public class CORE_GameOverState : IState
     {
-        private ICameraFollower CameraFollower => ServiceLocator.GetService<ICameraFollower>();
-        
         public StateMachine StateMachine { get; set; }
         public Action OnEnterStateEvent { get; set; }
         public Action OnExitStateEvent { get; set; }
@@ -22,12 +20,12 @@ namespace CORE.GameStates
         {
             OnEnterStateEvent?.Invoke();
             UIEventDocker.OnGameOverUIShown.Invoke();
-            CameraFollower.SetTargetFollowState(false);
         }
 
         public void ExitState()
         {
             OnExitStateEvent?.Invoke();
         }
+        
     }
 }

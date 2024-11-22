@@ -9,9 +9,10 @@ namespace CORE.Systems.PlayerSystem.Health
         [SerializeField] 
         private int _maxHealthPoints = 3;
         
-        private int _currentHealthPoints;
-        public Action OnHealthDecreased;
-        public Action OnHealthReachedDeadPoint;
+        public int CurrentHealthPoints { get; private set; }
+        
+        public event Action OnHealthDecreased;
+        public event Action OnHealthReachedDeadPoint;
 
         private void Awake()
         {
@@ -21,8 +22,8 @@ namespace CORE.Systems.PlayerSystem.Health
         
         public void DecreaseHealthPoint()
         {
-            _currentHealthPoints--;
-            if (_currentHealthPoints <= 0)
+            CurrentHealthPoints--;
+            if (CurrentHealthPoints <= 0)
             {
                 OnHealthReachedDeadPoint?.Invoke();
                 return;
@@ -32,7 +33,7 @@ namespace CORE.Systems.PlayerSystem.Health
 
         public void ResetHealthPoints()
         {
-            _currentHealthPoints = _maxHealthPoints;
+            CurrentHealthPoints = _maxHealthPoints;
         }
     }
 }

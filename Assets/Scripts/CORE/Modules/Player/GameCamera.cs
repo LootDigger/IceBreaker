@@ -3,17 +3,18 @@ using UnityEngine;
 
 namespace Core.PlayerCamera
 {
-    public class CameraFollower : MonoBehaviour,ICameraFollower
+    public class GameCamera : MonoBehaviour,IGameCamera
     {
         [SerializeField] private Transform _followTarget;
         [SerializeField] private Vector3 _offset;
         [SerializeField] private float _smoothSpeed = 0.125f;
+        [SerializeField] private float _cameraHeight;
 
         private bool _followPlayer = true;
         
         private void Awake()
         {
-            ServiceLocator.RegisterService<ICameraFollower>(this);
+            ServiceLocator.RegisterService<IGameCamera>(this);
         }
 
         void LateUpdate()
@@ -35,13 +36,25 @@ namespace Core.PlayerCamera
             LookAtTarget();
         }
 
+        public void PlayAnimation(AnimationBase animation)
+        {
+            animation.Play();
+        }
+
         private void LookAtTarget() => transform.LookAt(_followTarget);
-        private Vector3 ComposeDesiredPosition() => _followTarget.position + _offset;
+
+        private Vector3 ComposeDesiredPosition()
+        {
+            Vector3 position = _followTarget.position + _offset;
+            position.y = _cameraHeight;
+            return position;
+        }
+
         private Vector3 ComposeDeltaPosition() =>
             Vector3.Lerp(transform.position, ComposeDesiredPosition(), _smoothSpeed);
     }
 
-    public interface ICameraFollower
+    public interface IGameCamera
     {
         void SetTargetFollowState(bool isFollowing);
         void ResetTransform();

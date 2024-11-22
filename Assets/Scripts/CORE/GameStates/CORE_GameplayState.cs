@@ -9,7 +9,7 @@ namespace CORE.GameStates
     public class CORE_GameplayState : IState
     {
         private ShipStateMachine ShipStateMachine => ServiceLocator.GetService<ShipStateMachine>();
-        private ICameraFollower CameraFollower => ServiceLocator.GetService<ICameraFollower>();
+        private IGameCamera GameCamera => ServiceLocator.GetService<IGameCamera>();
         public StateMachine StateMachine { get; set; }
         public Action OnEnterStateEvent { get; set; }
         public Action OnExitStateEvent { get; set; }
@@ -24,8 +24,8 @@ namespace CORE.GameStates
             OnEnterStateEvent?.Invoke();
             ShipStateMachine.SetState<SHIP_GameInitState>();
             UIEventDocker.OnGameplayUIShown.Invoke();
-            CameraFollower.ResetTransform();
-            CameraFollower.SetTargetFollowState(true);
+            GameCamera.ResetTransform();
+            GameCamera.SetTargetFollowState(true);
         }
 
         public void ExitState()
