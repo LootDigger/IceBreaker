@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Iceberg_Var1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 98e0462c44f4c3a44a786a3994fc5092, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
