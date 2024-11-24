@@ -1,3 +1,4 @@
+using System;
 using CORE.Systems.PlayerSystem.Health;
 using UnityEngine;
 using DG.Tweening;
@@ -36,6 +37,14 @@ namespace Core.PlayerCamera
         public override void Play()
         {
             _target.DOShakePosition(_duration, Strength, Vibrato);
+        }
+        
+        public override void Play(Action callback)
+        {
+            _target.DOShakePosition(_duration, Strength, Vibrato).OnComplete(() =>
+            {
+                callback?.Invoke();
+            });;;
         }
     }
 }

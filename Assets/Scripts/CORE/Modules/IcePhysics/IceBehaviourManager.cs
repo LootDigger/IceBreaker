@@ -14,29 +14,21 @@ namespace CORE.Modules.IceBehaviourSystem
         [SerializeField] 
         private ShipEdgesKeeper _shipEdgesKeeper;
         
-        private TransformAccessArray _particlesAccessTransforms;
         private IFactoryObjectsKeeper<Transform> _particlesKeeper;
 
-        public TransformAccessArray ParticlesAccessTransforms
-        {
-            get
-            {
-                _particlesAccessTransforms.SetTransforms(_particlesKeeper.GetObjects());
-                return _particlesAccessTransforms;
-            }
-        }
+        public TransformAccessArray ParticlesAccessTransforms { get; private set; }
         
         private void Start() => Init();
 
         private void OnDestroy()
         {
-            _particlesAccessTransforms.Dispose();
+            ParticlesAccessTransforms.Dispose();
         }
 
         private void Init()
         {
-            _particlesAccessTransforms = new TransformAccessArray(new Transform[1]);
             _particlesKeeper = ServiceLocator.GetService<IceFactoryObjectsKeeper>();
+            ParticlesAccessTransforms = new TransformAccessArray(_particlesKeeper.GetObjects());
         }
 
         public float3[] GetShipEdges() => _shipEdgesKeeper.GlobalShipEdges;

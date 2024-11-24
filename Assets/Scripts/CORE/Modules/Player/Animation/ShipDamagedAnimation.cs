@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -12,5 +13,13 @@ public class ShipDamagedAnimation : AnimationBase
     public override void Play()
     {
         _target.DOShakeRotation(_duration, _strength, _vibrato, _randomness);
+    }
+    
+    public override void Play(Action callback)
+    {
+        _target.DOShakeRotation(_duration, _strength, _vibrato, _randomness).OnComplete(() =>
+        {
+            callback?.Invoke();
+        });
     }
 }

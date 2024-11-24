@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -12,5 +13,14 @@ public class ShipSinkAnimation : AnimationBase
     {
         _target.DOMoveY(transform.position.y - 4f, _duration).SetEase(Ease.InOutElastic);
         _target.DOLocalRotate(_sinkedRotation, _duration);
+    }
+    
+    public override void Play(Action callback)
+    {
+        _target.DOMoveY(transform.position.y - 4f, _duration).SetEase(Ease.InOutElastic);
+        _target.DOLocalRotate(_sinkedRotation, _duration).OnComplete(() =>
+        {
+            callback?.Invoke();
+        });;
     }
 }
