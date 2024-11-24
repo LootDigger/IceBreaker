@@ -23,9 +23,9 @@ namespace Core.Procedural.World
         
         private void Update()
         {
-            foreach (var chunk in _chunks)
+            for (int i = 0; i < _chunks.Count; i++)
             {
-                chunk.UpdateChunkRoutine();
+                _chunks[i].UpdateChunkRoutine();
             }
         }
 

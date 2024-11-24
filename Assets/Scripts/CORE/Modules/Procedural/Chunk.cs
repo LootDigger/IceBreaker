@@ -16,21 +16,24 @@ namespace CORE.Modules.Procedural
         
         private GameObject _player;
         private bool _isGenerated;
+        private Vector3 _chunkPosition;
 
         public ChunkEnemyGenerator EnemyGenerator => _enemyGenerator;
         
         private void Awake()
         {
             _player = ServiceLocator.GetService<Player.Player>().gameObject;
+            _chunkPosition = transform.position;
         }
         
         public void UpdateChunkRoutine()
         {
-            if (CalculateDistanceToPlayer() < _generationSettings.GenerateDistance && !_isGenerated)
+            float distance = CalculateDistanceToPlayer();
+            if (!_isGenerated && distance < _generationSettings.GenerateDistance)
             {
                 _isGenerated = Generate();
             }
-            else if (CalculateDistanceToPlayer() > _generationSettings.DisposeDistance && _isGenerated)
+            else if (_isGenerated && distance > _generationSettings.DisposeDistance)
             {
                 _isGenerated = Dispose();
             }
@@ -38,7 +41,7 @@ namespace CORE.Modules.Procedural
 
         private float CalculateDistanceToPlayer()
         {
-            return Vector3.Distance(_player.transform.position, transform.position);
+            return Vector3.Distance(_player.transform.position, _chunkPosition);
         }
 
         private bool Generate()
