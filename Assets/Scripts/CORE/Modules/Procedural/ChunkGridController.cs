@@ -1,26 +1,60 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using CORE.Modules.Player;
 using CORE.Modules.Procedural;
 using CORE.Modules.ProceduralSystem;
+using Patterns.ServiceLocator;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Core.Procedural.Pooling;
+using Helpers.Prefabs;
 
 namespace Core.Procedural.World
 {
-    public class ChunkGridSpawner : MonoBehaviour
+    public class ChunkGridController : MonoBehaviour
     {
         [SerializeField]
         private GameObject _chunkPrefab;
         [SerializeField] 
         private List<Chunk> _chunks;
+        [SerializeField] 
+        private List<ChunkEnemyGenerator> _chunkEnemyGenerators;
+        [SerializeField] 
+        private List<ChunkParticlesGenerator> _chunkParticlesGenerators;
         [SerializeField]
         private float _zoneWidth;
         [SerializeField]
         private Vector2 _chunkGridSize;
         [SerializeField]
         private Collider _nonSpawnArea;
-        
+
+
+        private void Start()
+        {
+            StartCoroutine(AwakeRoutine());
+        }
+
+        private IEnumerator AwakeRoutine()
+        {
+            GameObject player = ServiceLocator.GetService<Player>().gameObject;
+            PoolManager poolManager = ServiceLocator.GetService<PoolManager>();
+            IcebergPrefabFactory icebergFactory = ServiceLocator.GetService<IcebergPrefabFactory>();
+            IcePrefabFactory iceFactory = ServiceLocator.GetService<IcePrefabFactory>();
+
+            Debug.Log("~~Start Initializing");
+            for (int i = 0; i < _chunks.Count; i++)
+            {
+                _chunks[i].Init(player);
+                _chunkEnemyGenerators[i].Init(poolManager,icebergFactory);
+                _chunkParticlesGenerators[i].Init(poolManager,iceFactory);
+                yield return null;
+            }
+            Debug.Log("~~Finish Initializing");
+        }
+
+
         private void Update()
         {
             for (int i = 0; i < _chunks.Count; i++)

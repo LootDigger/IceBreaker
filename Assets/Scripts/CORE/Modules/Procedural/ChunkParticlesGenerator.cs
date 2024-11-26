@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Core.Procedural.PoolManager;
+using Core.Procedural.Pooling;
 using Helpers.Prefabs;
 using Helpers.Prefabs.Interfaces;
 using Patterns.ServiceLocator;
@@ -18,16 +18,16 @@ namespace CORE.Modules.ProceduralSystem
         private AbstractPrefabFactory _icePrefabFactory;
         private readonly List<GameObject> _generatedParticles = new();
 
-        private void Awake()
+        public void Init(PoolManager poolManager, IcePrefabFactory icePrefabFactory)
         {
-            GetServices();
+            SetupServices(poolManager,icePrefabFactory);
             WarmupParticles();
         }
 
-        private void GetServices()
+        private void SetupServices(PoolManager poolManager, IcePrefabFactory icePrefabFactory)
         {
-            _poolManager = ServiceLocator.GetService<PoolManager>();
-            _icePrefabFactory = ServiceLocator.GetService<IcePrefabFactory>();
+            _poolManager = poolManager;
+            _icePrefabFactory = icePrefabFactory;
         }
 
         private void WarmupParticles()

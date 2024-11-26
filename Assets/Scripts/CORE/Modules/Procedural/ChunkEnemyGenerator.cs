@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Core.Procedural.PoolManager;
+using Core.Procedural.Pooling;
 using Helpers.Prefabs;
 using Helpers.Prefabs.Iceberg;
 using Helpers.Prefabs.Interfaces;
@@ -22,12 +22,10 @@ namespace CORE.Modules.ProceduralSystem
         private AbstractPrefabFactory _icebergPrefabFactory;
         private readonly List<GameObject> _generatedIcebergs = new();
 
-        private void Awake() => GetServices();
-        
-        private void GetServices()
+        public void Init(PoolManager poolManRef, IcebergPrefabFactory icebergFactoryRef)
         {
-            _poolManager = ServiceLocator.GetService<PoolManager>();
-            _icebergPrefabFactory = ServiceLocator.GetService<IcebergPrefabFactory>();
+           _poolManager = poolManRef;
+           _icebergPrefabFactory = icebergFactoryRef;
         }
         
         private void SpawnIcebergs()

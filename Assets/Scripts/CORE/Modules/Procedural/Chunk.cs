@@ -16,18 +16,23 @@ namespace CORE.Modules.Procedural
         
         private GameObject _player;
         private bool _isGenerated;
+        private bool _isInitialized;
         private Vector3 _chunkPosition;
 
         public ChunkEnemyGenerator EnemyGenerator => _enemyGenerator;
         
-        private void Awake()
+        public void Init(GameObject playerGORef)
         {
-            _player = ServiceLocator.GetService<Player.Player>().gameObject;
+            _player = playerGORef;
+            // _player = ServiceLocator.GetService<Player.Player>().gameObject;
             _chunkPosition = transform.position;
+            _isInitialized = true;
         }
         
         public void UpdateChunkRoutine()
         {
+            if(!_isInitialized) return;
+            
             float distance = CalculateDistanceToPlayer();
             if (!_isGenerated && distance < _generationSettings.GenerateDistance)
             {

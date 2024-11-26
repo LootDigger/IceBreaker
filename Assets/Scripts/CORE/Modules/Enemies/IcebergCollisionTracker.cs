@@ -2,7 +2,7 @@ using System;
 using CORE.GameStates;
 using CORE.Modules.Player;
 using CORE.Modules.Player.SM;
-using Core.Procedural.PoolManager;
+using Core.Procedural.Pooling;
 using Patterns.AbstractStateMachine;
 using Patterns.ServiceLocator;
 using UnityEngine;

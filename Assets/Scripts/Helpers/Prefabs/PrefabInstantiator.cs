@@ -1,4 +1,4 @@
-using Core.Procedural.PoolManager;
+using Core.Procedural.Pooling;
 using Patterns.ServiceLocator;
 using UnityEngine;
 

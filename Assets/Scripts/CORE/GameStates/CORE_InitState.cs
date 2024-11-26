@@ -64,10 +64,13 @@ namespace CORE.GameStates
            
         }
 
-        private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
+        private void OnSceneLoadedCallback()
         {
             StateMachine.SetState<CORE_GameMenuState>();
-            SceneManager.sceneLoaded -= OnSceneLoadedCallback;
+            _sceneLoader.UnloadScene(new UnloadSceneRequest()
+            {
+                SceneName = PersistantScenes.ENTRY_POINT_SCENE,
+            });
         }
 
         private async Task InitWaiter()

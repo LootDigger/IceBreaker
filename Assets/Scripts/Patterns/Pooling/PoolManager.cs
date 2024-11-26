@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Patterns.ServiceLocator;
 using UnityEngine;
 
-namespace Core.Procedural.PoolManager
+namespace Core.Procedural.Pooling
 {
     public class PoolManager : MonoBehaviour
     {

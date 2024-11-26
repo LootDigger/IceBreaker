@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CORE.Gameplay;
 using CORE.GameStates;
@@ -27,7 +28,7 @@ namespace CORE.Bootstrap
         private PrefabInstantiator _instantiator;
         private PrefabResourceLoader _resourceLoader;
         private MaterialInstanceProvider _materialInstanceProvider;
-        
+
         private void Awake() => Init();
 
         private void Init()
@@ -63,7 +64,7 @@ namespace CORE.Bootstrap
         {
             CoreStateMachine stateMachine = new CoreStateMachine();
             ServiceLocator.RegisterService(stateMachine);
-            stateMachine.SetState<CORE_InitState>(true);
+            stateMachine.SetState<CORE_InitState>();
         }
         
         
