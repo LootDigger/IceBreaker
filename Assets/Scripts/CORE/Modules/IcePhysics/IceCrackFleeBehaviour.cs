@@ -15,6 +15,8 @@ namespace Core.Behaviours
         
         void Update()
         {
+            if(!_behaviourManager.IsInitialized) {return;}
+
             float3[] edges = _behaviourManager.GetShipEdges();
             if(edges == null) {return;}
 

@@ -15,32 +15,19 @@ namespace CORE.Systems.Enemies
         [SerializeField] private Collider _collder;
         
         private StateMachine _shipStateMachine;
-        private StateMachine _coreStateMachine;
 
         public UnityEvent OnPlayerCollision;
         
         void Start()
         {
             _shipStateMachine = ServiceLocator.GetService<ShipStateMachine>();
-            _coreStateMachine = ServiceLocator.GetService<CoreStateMachine>();
-            SubscibeEvents();
         }
 
-        private void OnDestroy()
+        private void OnEnable()
         {
-            UnsubscibeEvents();
+            ResetColliderActivity();
         }
 
-        void SubscibeEvents()
-        {
-            _coreStateMachine?.SubscribeStateEnter<CORE_GameplayState>(ResetColliderActivity);
-        }
-        
-        void UnsubscibeEvents()
-        {
-            _coreStateMachine?.UnsubscribeStateEnter<CORE_GameplayState>(ResetColliderActivity);
-        }
-        
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<Player>() == null) { return; }

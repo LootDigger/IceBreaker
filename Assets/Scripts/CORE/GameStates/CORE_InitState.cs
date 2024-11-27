@@ -66,7 +66,6 @@ namespace CORE.GameStates
 
         private void OnSceneLoadedCallback()
         {
-            StateMachine.SetState<CORE_GameMenuState>();
             _sceneLoader.UnloadScene(new UnloadSceneRequest()
             {
                 SceneName = PersistantScenes.ENTRY_POINT_SCENE,

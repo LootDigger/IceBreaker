@@ -8,11 +8,12 @@ using Patterns.ServiceLocator;
 using UnityEditor;
 using UnityEngine;
 using Core.Procedural.Pooling;
+using Cysharp.Threading.Tasks;
 using Helpers.Prefabs;
 
 namespace Core.Procedural.World
 {
-    public class ChunkGridController : MonoBehaviour
+    public class ChunkGridController : MonoBehaviour, ILoader
     {
         [SerializeField]
         private GameObject _chunkPrefab;
@@ -29,13 +30,13 @@ namespace Core.Procedural.World
         [SerializeField]
         private Collider _nonSpawnArea;
         
-        private void Start()
-        {
-            StartCoroutine(AwakeRoutine());
-        }
+        public bool IsInitialized { get; set; }
 
-        private IEnumerator AwakeRoutine()
+
+        public async UniTask Init()
         {
+            int deltaTimeMil = (int)Time.deltaTime * 1000;
+            Debug.Log("DeltaTimeMil");
             GameObject player = ServiceLocator.GetService<Player>().gameObject;
             PoolManager poolManager = ServiceLocator.GetService<PoolManager>();
             IcebergPrefabFactory icebergFactory = ServiceLocator.GetService<IcebergPrefabFactory>();
@@ -46,8 +47,10 @@ namespace Core.Procedural.World
                 _chunks[i].Init(player);
                 _chunkEnemyGenerators[i].Init(poolManager,icebergFactory);
                 _chunkParticlesGenerators[i].Init(poolManager,iceFactory);
-                yield return null;
+                await UniTask.Delay(deltaTimeMil);
             }
+
+            IsInitialized = true;
         }
 
 

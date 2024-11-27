@@ -1,4 +1,5 @@
 using CORE.Systems.PlayerSystem;
+using Cysharp.Threading.Tasks;
 using Helpers.Prefabs;
 using Patterns.ServiceLocator;
 using Unity.Burst;
@@ -9,7 +10,7 @@ using UnityEngine.Jobs;
 namespace CORE.Modules.IceBehaviourSystem
 {
     [BurstCompile]
-    public class IceBehaviourManager : MonoBehaviour
+    public class IceBehaviourManager : MonoBehaviour, ILoader
     {
         [SerializeField] 
         private ShipEdgesKeeper _shipEdgesKeeper;
@@ -18,18 +19,20 @@ namespace CORE.Modules.IceBehaviourSystem
 
         public TransformAccessArray ParticlesAccessTransforms { get; private set; }
         
-        private void Start() => Init();
-
         private void OnDestroy()
         {
             ParticlesAccessTransforms.Dispose();
         }
 
-        private void Init()
+        public async UniTask Init()
         {
+            Debug.Log("IceBehaviourManager::Init");
             _particlesKeeper = ServiceLocator.GetService<IceFactoryObjectsKeeper>();
             ParticlesAccessTransforms = new TransformAccessArray(_particlesKeeper.GetObjects());
+            IsInitialized = true;
         }
+
+        public bool IsInitialized { get; set; }
 
         public float3[] GetShipEdges() => _shipEdgesKeeper.GlobalShipEdges;
     }
