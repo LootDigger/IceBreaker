@@ -14,6 +14,9 @@ namespace CORE.Gameplay
       private GameClock _clock;
       
       private Score _score;
+      private Score _bestScore;
+      private BestScoreSaver _bestScoreSaver;
+
       private StateMachine _shipStateMachine;
       private StateMachine _coreStateMachine;
       
@@ -33,11 +36,18 @@ namespace CORE.Gameplay
       void Init()
       {
          ServiceLocator.RegisterService(this);
-         _score = new Score();
-         Debug.Log("### Try get Ship SM");
-
+         InitUserScore();
          _shipStateMachine = ServiceLocator.GetService<ShipStateMachine>();
          _coreStateMachine = ServiceLocator.GetService<CoreStateMachine>();
+      }
+
+      void InitUserScore()
+      {
+         _score = new Score();
+         _bestScoreSaver = new BestScoreSaver(new JSONSaver());
+         _bestScore = _bestScoreSaver.LoadScore();
+         if (_bestScore != null) return;
+         _bestScore = new Score();
       }
 
       private void SubscribeEvents()
@@ -50,7 +60,6 @@ namespace CORE.Gameplay
       {
          _shipStateMachine.UnsubscribeStateEnter<SHIP_DeadState>(OnPlayerDeath);
          _clock.OnSecondPassed -= ClockOnOnSecondPassed;
-
       }
       
       private void ClockOnOnSecondPassed(int currentScore)
@@ -71,10 +80,18 @@ namespace CORE.Gameplay
          OnGameScoreChanged.Invoke(0);
       }
 
+      private void UpdateBestScore()
+      {
+         if(_score.ScoreValue <= _bestScore.ScoreValue) return;
+         _bestScore.ScoreValue = _score.ScoreValue;
+         _bestScoreSaver.SaveScore(_bestScore);
+      }
+
       public void OnPlayerDeath()
       {
          _clock.StopClock();
          _score.ScoreValue = _clock.SecondsElapsed;
+         UpdateBestScore();
       }
    }
 }
