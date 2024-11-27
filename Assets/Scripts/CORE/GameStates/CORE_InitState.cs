@@ -1,6 +1,6 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Patterns.AbstractStateMachine;
-using System.Threading.Tasks;
 using Scene_Management;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,7 +31,7 @@ namespace CORE.GameStates
             OnExitStateEvent?.Invoke();
         }
 
-        private async Task InitState()
+        private async UniTask InitState()
         {
             try
             {
@@ -46,7 +46,7 @@ namespace CORE.GameStates
             }
         }
 
-        private async Task LoadGameScene()
+        private async UniTask LoadGameScene()
         {
             try
             {
@@ -54,7 +54,7 @@ namespace CORE.GameStates
                 {
                     SceneName = PersistantScenes.MAIN_GAME_SCENE,
                     LoadSceneMode = LoadSceneMode.Single
-                }, OnSceneLoadedCallback);
+                });
             }
             catch (Exception e)
             {
@@ -64,13 +64,15 @@ namespace CORE.GameStates
            
         }
 
-        private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
+        private void OnSceneLoadedCallback()
         {
-            StateMachine.SetState<CORE_GameMenuState>();
-            SceneManager.sceneLoaded -= OnSceneLoadedCallback;
+            _sceneLoader.UnloadScene(new UnloadSceneRequest()
+            {
+                SceneName = PersistantScenes.ENTRY_POINT_SCENE,
+            });
         }
 
-        private async Task InitWaiter()
+        private async UniTask InitWaiter()
         {
             try
             {
@@ -89,7 +91,7 @@ namespace CORE.GameStates
         {
             private int _waitTime;
             public GameInitWaiter(int time) => _waitTime = time;
-            public async Task WaitForGameLoad() => await Task.Delay(_waitTime);
+            public async UniTask WaitForGameLoad() => await UniTask.Delay(_waitTime);
         }
     }
 }

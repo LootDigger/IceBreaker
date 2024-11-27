@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Core.Procedural.PoolManager;
+using Core.Procedural.Pooling;
 using Helpers.Prefabs;
 using Helpers.Prefabs.Iceberg;
 using Helpers.Prefabs.Interfaces;
@@ -15,19 +15,17 @@ namespace CORE.Modules.ProceduralSystem
         private int _enemyCount = 1;
         [SerializeField]
         private float _spawnRadius = 10f;
-        
+        [SerializeField]
         private Collider _nonSpawnArea;
         
         private PoolManager _poolManager;
         private AbstractPrefabFactory _icebergPrefabFactory;
         private readonly List<GameObject> _generatedIcebergs = new();
 
-        private void Awake() => GetServices();
-        
-        private void GetServices()
+        public void Init(PoolManager poolManRef, IcebergPrefabFactory icebergFactoryRef)
         {
-            _poolManager = ServiceLocator.GetService<PoolManager>();
-            _icebergPrefabFactory = ServiceLocator.GetService<IcebergPrefabFactory>();
+           _poolManager = poolManRef;
+           _icebergPrefabFactory = icebergFactoryRef;
         }
         
         private void SpawnIcebergs()
@@ -68,7 +66,7 @@ namespace CORE.Modules.ProceduralSystem
         public void Generate() => SpawnIcebergs();
 
         public void Dispose() => DisposeIcebergs();
-
-        public void InjectNonSpawnArea(Collider collider) => _nonSpawnArea = collider;
+        
+        public void InjectNonSpawnCollider(Collider nonSpawnAreaCollider) => _nonSpawnArea = nonSpawnAreaCollider;
     }
 }

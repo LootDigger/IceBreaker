@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Iceberg_Var2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 736c2f13941961847a240c9e78501027, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -110,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcd0358efa99c54e97b96f01791ef3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collder: {fileID: 8264942893547883146}
   OnPlayerCollision:
     m_PersistentCalls:
       m_Calls:
@@ -159,6 +164,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationReference: {fileID: 6930822752278769078}
+  _onAnimationFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7239153636447766933}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6930822752278769078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,3 +191,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e879eab61495504cb175302fa90ed12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _duration: 0.5

@@ -22,22 +22,21 @@ namespace Helpers.Prefabs
             _factoryObjectsKeeper = factoryObjectsKeeper;
         }
         
-        public override GameObject Create(Vector3 position)
+        public override GameObject Create(Vector3 position, bool shouldBeActive = true)
         {
             try
             {
                 GameObject prefab = LoadPrefab();
-                GameObject objectInstance = InstantiatePrefab(prefab, position, Quaternion.identity);
+                GameObject objectInstance = InstantiatePrefab(prefab, position, Quaternion.identity,shouldBeActive);
                 objectInstance.GetComponentInChildren<MeshRenderer>().sharedMaterial = _materialInstanceProvider.GetMaterialInstance(prefab);
                 _factoryObjectsKeeper.AddObject(objectInstance.transform);
                 return objectInstance;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                Debug.LogError(e.Message);
+                throw new NullReferenceException();
             }
-           
         }
     }
 }

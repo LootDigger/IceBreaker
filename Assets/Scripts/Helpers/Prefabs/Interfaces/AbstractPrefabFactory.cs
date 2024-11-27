@@ -16,9 +16,9 @@ namespace Helpers.Prefabs.Interfaces
             _variantsProvider = provider;
         }
         
-        public virtual GameObject Create(Vector3 position)
+        public virtual GameObject Create(Vector3 position, bool shouldBeActive = true)
         {
-            return InstantiatePrefab(LoadPrefab(), position,Quaternion.identity);
+            return InstantiatePrefab(LoadPrefab(), position,Quaternion.identity,shouldBeActive);
         }
 
         protected GameObject LoadPrefab()
@@ -26,9 +26,9 @@ namespace Helpers.Prefabs.Interfaces
             return _resourceLoader.LoadResource<GameObject>(_variantsProvider.GetRandomVariant().GetPath());
         }
 
-        protected GameObject InstantiatePrefab(GameObject prefab, Vector3 position, Quaternion rotation)
+        protected GameObject InstantiatePrefab(GameObject prefab, Vector3 position, Quaternion rotation, bool shouldBeActive = true)
         {
-            return _instantiator.Instantiate(prefab, position,Quaternion.identity);
+            return _instantiator.Instantiate(prefab, position,Quaternion.identity,shouldBeActive);
         }
     }
 }

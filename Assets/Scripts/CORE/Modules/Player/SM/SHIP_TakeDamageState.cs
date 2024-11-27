@@ -1,11 +1,11 @@
 using System;
-using System.Threading.Tasks;
 using CORE.Modules.Player.Movement;
+using Core.PlayerCamera;
 using CORE.Systems.PlayerSystem.Health;
 using CORE.Systems.PlayerSystem.Movement;
+using Cysharp.Threading.Tasks;
 using Patterns.AbstractStateMachine;
 using Patterns.ServiceLocator;
-using UnityEngine;
 
 namespace CORE.Modules.Player.SM
 {
@@ -16,6 +16,8 @@ namespace CORE.Modules.Player.SM
         private readonly PlayerRotation _rotation;
         private readonly AnimationInvoker _shipDamageAnimation;
         private readonly ShipStaticDataProvider _shipStaticDataProvider;
+        private readonly ICameraAnimator _cameraAnimator;
+
 
         public StateMachine StateMachine { get; set; }
         public Action OnEnterStateEvent { get; set; }
@@ -29,6 +31,7 @@ namespace CORE.Modules.Player.SM
             _rotation = rotation;
             _shipDamageAnimation = animation;
             _shipStaticDataProvider = ServiceLocator.GetService<ShipStaticDataProvider>();
+            _cameraAnimator = ServiceLocator.GetService<CameraAnimator>();
             SubscribeEvents();
         }
         
@@ -38,6 +41,7 @@ namespace CORE.Modules.Player.SM
             _movement.SetMovementBlock(true);
             _rotation.SetRotationBlock(true);
             _healthManager.DecreaseHealthPoint();
+            _cameraAnimator.PlayShakeAnimation();
         }
 
         public void ExitState()
@@ -57,10 +61,10 @@ namespace CORE.Modules.Player.SM
             _healthManager.OnHealthDecreased -= OnHealthDecreasedHandler;
         }
         
-        private async Task DamageTakeRoutine()
+        private async UniTask DamageTakeRoutine()
         {
             _shipDamageAnimation.Play();
-            await Task.Delay((int)(_shipStaticDataProvider.Data.DamageFreezeTime * 1000));
+            await UniTask.Delay((int)(_shipStaticDataProvider.Data.DamageFreezeTime * 1000));
             StateMachine.SetState(StateMachine.PreviousState);
         }
 

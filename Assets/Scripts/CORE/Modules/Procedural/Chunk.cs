@@ -16,23 +16,29 @@ namespace CORE.Modules.Procedural
         
         private GameObject _player;
         private bool _isGenerated;
+        private bool _isInitialized;
+        private Vector3 _chunkPosition;
 
         public ChunkEnemyGenerator EnemyGenerator => _enemyGenerator;
         
-        private void Awake()
+        public void Init(GameObject playerGORef)
         {
-            _player = ServiceLocator.GetService<Player.Player>().gameObject;
+            _player = playerGORef;
+            // _player = ServiceLocator.GetService<Player.Player>().gameObject;
+            _chunkPosition = transform.position;
+            _isInitialized = true;
         }
-
-        private void Update() => UpdateChunkRoutine();
-
-        private void UpdateChunkRoutine()
+        
+        public void UpdateChunkRoutine()
         {
-            if (CalculateDistanceToPlayer() < _generationSettings.GenerateDistance && !_isGenerated)
+            if(!_isInitialized) return;
+            
+            float distance = CalculateDistanceToPlayer();
+            if (!_isGenerated && distance < _generationSettings.GenerateDistance)
             {
                 _isGenerated = Generate();
             }
-            else if (CalculateDistanceToPlayer() > _generationSettings.DisposeDistance && _isGenerated)
+            else if (_isGenerated && distance > _generationSettings.DisposeDistance)
             {
                 _isGenerated = Dispose();
             }
@@ -40,7 +46,7 @@ namespace CORE.Modules.Procedural
 
         private float CalculateDistanceToPlayer()
         {
-            return Vector3.Distance(_player.transform.position, transform.position);
+            return Vector3.Distance(_player.transform.position, _chunkPosition);
         }
 
         private bool Generate()
@@ -51,7 +57,7 @@ namespace CORE.Modules.Procedural
         }
         
         private bool Dispose()
-        {            
+        {       
             _particlesGenerator.Dispose();
             _enemyGenerator.Dispose();
             return false;

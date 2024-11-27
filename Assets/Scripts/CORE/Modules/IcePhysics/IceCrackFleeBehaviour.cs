@@ -3,7 +3,6 @@ using CORE.Modules.IceBehaviourSystem;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Jobs;
-using UnityEngine.Serialization;
 
 namespace Core.Behaviours
 {
@@ -16,6 +15,8 @@ namespace Core.Behaviours
         
         void Update()
         {
+            if(!_behaviourManager.IsInitialized) {return;}
+
             float3[] edges = _behaviourManager.GetShipEdges();
             if(edges == null) {return;}
 

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Core.Procedural.PoolManager;
+using Core.Procedural.Pooling;
 using Helpers.Prefabs;
 using Helpers.Prefabs.Interfaces;
 using Patterns.ServiceLocator;
@@ -16,36 +16,47 @@ namespace CORE.Modules.ProceduralSystem
         
         private PoolManager _poolManager;
         private AbstractPrefabFactory _icePrefabFactory;
-        private IFactoryObjectsKeeper<Transform> _factoryObjectsKeeper;
         private readonly List<GameObject> _generatedParticles = new();
-        
-        private void Awake() => GetServices();
-        
-        private void GetServices()
+
+        public void Init(PoolManager poolManager, IcePrefabFactory icePrefabFactory)
         {
-            _poolManager = ServiceLocator.GetService<PoolManager>();
-            _icePrefabFactory = ServiceLocator.GetService<IcePrefabFactory>();
-            _factoryObjectsKeeper = ServiceLocator.GetService<IceFactoryObjectsKeeper>();
+            SetupServices(poolManager,icePrefabFactory);
+            WarmupParticles();
+        }
+
+        private void SetupServices(PoolManager poolManager, IcePrefabFactory icePrefabFactory)
+        {
+            _poolManager = poolManager;
+            _icePrefabFactory = icePrefabFactory;
+        }
+
+        private void WarmupParticles()
+        {
+            for (int i = 0; i < _generationSettings.ChunkParticlesCount; i++)
+            {
+                var generatedObject = _icePrefabFactory.Create(Vector3.zero,shouldBeActive:false);
+                _generatedParticles.Add(generatedObject);
+            }
         }
         
         private void SpawnParticles()
         {
-            for (int i = 0; i < _generationSettings.ParticlesCount; i++)
+            if (_generatedParticles.IsNullOrEmpty()) { return; }
+            for (int i = 0; i < _generatedParticles.Count; i++)
             {
                 Vector3 position = ComposeSpawnPosition(_generationSettings.ParticleSpawnRadius, transform.position);
-                _generatedParticles.Add(_icePrefabFactory.Create(position));
+                _generatedParticles[i].transform.position = position;
+                _generatedParticles[i].SetActive(true);
             }
         }
         
         private void DespawnParticles()
         {
-            if (_generatedParticles.IsNullOrEmpty()) {return;}
+            if (_generatedParticles.IsNullOrEmpty()) { return; }
             for (int i = 0; i < _generatedParticles.Count; i++)
             {
-                _factoryObjectsKeeper.RemoveObject(_generatedParticles[i].transform);
                 _poolManager.Destroy(_generatedParticles[i]);
             }
-            _generatedParticles.Clear();
         }
         
         private Vector3 ComposeSpawnPosition(float spawnRadius, Vector3 initPosition)

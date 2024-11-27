@@ -13,8 +13,10 @@ public class IceCrackWaveReactBehaviour : MonoBehaviour
     
     private void Update()
     {
+        if(!_behaviourManager.IsInitialized) {return;}
+        
         float3[] edges = _behaviourManager.GetShipEdges();
-        if(edges == null) {return;}
+        if(edges == null) { return; }
 
         for (int i = 0; i < edges.Length; i++)
         {

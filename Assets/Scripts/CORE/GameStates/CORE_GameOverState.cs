@@ -1,5 +1,7 @@
 using System;
+using Core.PlayerCamera;
 using Patterns.AbstractStateMachine;
+using Patterns.ServiceLocator;
 
 namespace CORE.GameStates
 {
@@ -24,5 +26,6 @@ namespace CORE.GameStates
         {
             OnExitStateEvent?.Invoke();
         }
+        
     }
 }

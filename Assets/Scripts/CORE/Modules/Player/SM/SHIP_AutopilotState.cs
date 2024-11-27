@@ -1,10 +1,9 @@
 using System;
-using System.Threading.Tasks;
 using CORE.Modules.Player.Movement;
 using CORE.Systems.PlayerSystem.Movement;
+using Cysharp.Threading.Tasks;
 using Patterns.AbstractStateMachine;
 using Patterns.ServiceLocator;
-using UnityEngine;
 
 namespace CORE.Modules.Player.SM
 {
@@ -40,9 +39,9 @@ namespace CORE.Modules.Player.SM
             OnExitStateEvent?.Invoke();
         }
 
-        private async Task StartAutopilotCountDown()
+        private async UniTaskVoid StartAutopilotCountDown()
         {
-            await Task.Delay((int)(_shipStaticDataProvider.Data.AutopilotDuration * 1000));
+            await UniTask.Delay((int)(_shipStaticDataProvider.Data.AutopilotDuration * 1000));
             SetControlsToManual();
         }
 

@@ -9,10 +9,5 @@ namespace CORE.Modules.Player
         {
             ServiceLocator.RegisterService(this);
         }
-
-        public void DEBUG_INFO()
-        {
-            Debug.Log("DEBUG INFO");
-        }
     }
 }

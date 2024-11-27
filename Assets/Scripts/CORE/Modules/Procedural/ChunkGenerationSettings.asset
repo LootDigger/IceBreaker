@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _generateDistance: 40
   _disposeDistance: 40
-  _particlesCount: 25
+  _chunksCount: 100
+  _chunkParticlesCount: 25
   _particleSpawnRadius: 10
