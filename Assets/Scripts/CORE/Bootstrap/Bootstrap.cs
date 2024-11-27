@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CORE.Gameplay;
 using CORE.GameStates;
 using CORE.Modules.Player;
+using CORE.Modules.ProceduralSystem;
 using Helpers.Materials;
 using Helpers.PrefabFabric;
 using Helpers.Prefabs;
@@ -24,6 +25,8 @@ namespace CORE.Bootstrap
         private readonly List<IResourcePathProvider> _icebergPrefabVariants = new();
         [SerializeField] 
         private ShipDataScriptable _shipData;
+        [SerializeField] 
+        private ChunkGenerationSettings _chunkGenerationSettings;
 
         private PrefabInstantiator _instantiator;
         private PrefabResourceLoader _resourceLoader;
@@ -72,7 +75,7 @@ namespace CORE.Bootstrap
         private void RegisterIcePrefabFactory()
         {
             IceParticlesVariantsProvider prefabsProvider = new();
-            IceFactoryObjectsKeeper objectsKeeper = new();
+            IceFactoryObjectsKeeper objectsKeeper = new(maxCount:_chunkGenerationSettings.GlobalParticlesCount);
             foreach (var variant in _icePrefabVariants)
             {
                 prefabsProvider.AddVariant(variant);

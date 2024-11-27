@@ -5,7 +5,6 @@ using CORE.Modules.Player;
 using CORE.Modules.Procedural;
 using CORE.Modules.ProceduralSystem;
 using Patterns.ServiceLocator;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Core.Procedural.Pooling;
@@ -29,8 +28,7 @@ namespace Core.Procedural.World
         private Vector2 _chunkGridSize;
         [SerializeField]
         private Collider _nonSpawnArea;
-
-
+        
         private void Start()
         {
             StartCoroutine(AwakeRoutine());
@@ -43,7 +41,6 @@ namespace Core.Procedural.World
             IcebergPrefabFactory icebergFactory = ServiceLocator.GetService<IcebergPrefabFactory>();
             IcePrefabFactory iceFactory = ServiceLocator.GetService<IcePrefabFactory>();
 
-            Debug.Log("~~Start Initializing");
             for (int i = 0; i < _chunks.Count; i++)
             {
                 _chunks[i].Init(player);
@@ -51,7 +48,6 @@ namespace Core.Procedural.World
                 _chunkParticlesGenerators[i].Init(poolManager,iceFactory);
                 yield return null;
             }
-            Debug.Log("~~Finish Initializing");
         }
 
 

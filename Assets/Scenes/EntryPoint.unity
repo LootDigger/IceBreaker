@@ -255,6 +255,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   _shipData: {fileID: 11400000, guid: 0ae8b2569e75dad40bff8fff5649f51a, type: 2}
+  _chunkGenerationSettings: {fileID: 11400000, guid: 5e024f0a053e7e2419eafa231f6259c8, type: 2}
 --- !u!4 &664568742
 Transform:
   m_ObjectHideFlags: 0

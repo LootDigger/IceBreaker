@@ -5,13 +5,11 @@ namespace Helpers.Prefabs
     public class IceFactoryObjectsKeeper : IFactoryObjectsKeeper<Transform>
     {
         private readonly Transform[] _spawnedIceObjects;
-        private readonly int _maxCount = 1000;
-        
         private int _index = 0;
         
-        public IceFactoryObjectsKeeper()
+        public IceFactoryObjectsKeeper(int maxCount)
         {
-            _spawnedIceObjects = new Transform[_maxCount];
+            _spawnedIceObjects = new Transform[maxCount];
         }
         
         public void AddObject(Transform obj)

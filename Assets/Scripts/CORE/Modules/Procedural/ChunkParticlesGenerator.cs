@@ -32,7 +32,7 @@ namespace CORE.Modules.ProceduralSystem
 
         private void WarmupParticles()
         {
-            for (int i = 0; i < _generationSettings.ParticlesCount; i++)
+            for (int i = 0; i < _generationSettings.ChunkParticlesCount; i++)
             {
                 var generatedObject = _icePrefabFactory.Create(Vector3.zero,shouldBeActive:false);
                 _generatedParticles.Add(generatedObject);
