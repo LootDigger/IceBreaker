@@ -1,9 +1,9 @@
 using System;
-using System.Threading.Tasks;
 using CORE.Modules.Player.Movement;
 using Core.PlayerCamera;
 using CORE.Systems.PlayerSystem.Health;
 using CORE.Systems.PlayerSystem.Movement;
+using Cysharp.Threading.Tasks;
 using Patterns.AbstractStateMachine;
 using Patterns.ServiceLocator;
 
@@ -61,10 +61,10 @@ namespace CORE.Modules.Player.SM
             _healthManager.OnHealthDecreased -= OnHealthDecreasedHandler;
         }
         
-        private async Task DamageTakeRoutine()
+        private async UniTask DamageTakeRoutine()
         {
             _shipDamageAnimation.Play();
-            await Task.Delay((int)(_shipStaticDataProvider.Data.DamageFreezeTime * 1000));
+            await UniTask.Delay((int)(_shipStaticDataProvider.Data.DamageFreezeTime * 1000));
             StateMachine.SetState(StateMachine.PreviousState);
         }
 

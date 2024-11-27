@@ -5,8 +5,8 @@ using CORE.Systems.PlayerSystem.Movement;
 using Patterns.AbstractStateMachine;
 using Patterns.Command;
 using Patterns.ServiceLocator;
-using System.Threading.Tasks;
 using Core.PlayerCamera;
+using Cysharp.Threading.Tasks;
 
 namespace CORE.Modules.Player.SM
 {
@@ -49,9 +49,9 @@ namespace CORE.Modules.Player.SM
             OnExitStateEvent?.Invoke();
         }
 
-        private async Task GameOverDelay()
+        private async UniTask GameOverDelay()
         {
-            await Task.Delay(1000);
+            await UniTask.Delay(1000);
             _coreStateMachine.SetState<CORE_GameOverState>();
 
         }

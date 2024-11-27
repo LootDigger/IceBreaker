@@ -26,7 +26,6 @@ namespace CORE.Modules.IceBehaviourSystem
 
         public async UniTask Init()
         {
-            Debug.Log("IceBehaviourManager::Init");
             _particlesKeeper = ServiceLocator.GetService<IceFactoryObjectsKeeper>();
             ParticlesAccessTransforms = new TransformAccessArray(_particlesKeeper.GetObjects());
             IsInitialized = true;

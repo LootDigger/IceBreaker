@@ -31,12 +31,10 @@ namespace Core.Procedural.World
         private Collider _nonSpawnArea;
         
         public bool IsInitialized { get; set; }
-
-
+        
         public async UniTask Init()
         {
             int deltaTimeMil = (int)Time.deltaTime * 1000;
-            Debug.Log("DeltaTimeMil");
             GameObject player = ServiceLocator.GetService<Player>().gameObject;
             PoolManager poolManager = ServiceLocator.GetService<PoolManager>();
             IcebergPrefabFactory icebergFactory = ServiceLocator.GetService<IcebergPrefabFactory>();
@@ -49,10 +47,8 @@ namespace Core.Procedural.World
                 _chunkParticlesGenerators[i].Init(poolManager,iceFactory);
                 await UniTask.Delay(deltaTimeMil);
             }
-
             IsInitialized = true;
         }
-
 
         private void Update()
         {
@@ -61,6 +57,8 @@ namespace Core.Procedural.World
                 _chunks[i].UpdateChunkRoutine();
             }
         }
+        
+#if UNITY_EDITOR
 
         private void OnDrawGizmos()
         {
@@ -68,8 +66,6 @@ namespace Core.Procedural.World
             Vector3 initPoint = Vector3.zero - initialCalcPointBias;
             Gizmos.DrawSphere(initPoint,1f);
         }
-
-#if UNITY_EDITOR
 
         [Sirenix.OdinInspector.Button]
         private void ClearChunkList()

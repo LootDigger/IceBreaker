@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,11 +9,11 @@ namespace Scene_Management
     {
         private AsyncOperation _currentOperation;
         
-        public async Task LoadScene(LoadSceneRequest request, Action callback = null, bool allowSceneActivation = true,float operationDelay = 0.0f)
+        public async UniTask LoadScene(LoadSceneRequest request, Action callback = null, bool allowSceneActivation = true,float operationDelay = 0.0f)
         {
             if (operationDelay > 0.0f)
             {
-                await Task.Delay((int)operationDelay * 1000);
+                await UniTask.Delay((int)operationDelay * 1000);
             }
             AsyncOperation operation = SceneManager.LoadSceneAsync(request.SceneName, request.LoadSceneMode);
             _currentOperation = operation;
@@ -26,7 +26,7 @@ namespace Scene_Management
 
             while (!operation.isDone)
             {
-                await Task.Yield();
+                await UniTask.Yield();
             }
         }
 
@@ -36,14 +36,14 @@ namespace Scene_Management
             _currentOperation.allowSceneActivation = true;
         }
 
-        public async Task UnloadScene(UnloadSceneRequest request,float operationDelay = 0.0f)
+        public async UniTask UnloadScene(UnloadSceneRequest request,float operationDelay = 0.0f)
         {
             if (operationDelay > 0.0f)
             {
                 int time = (int)operationDelay * 1000;
-                await Task.Delay(time);
+                await UniTask.Delay(time);
             }
-            SceneManager.UnloadSceneAsync(request.SceneName);
+            await SceneManager.UnloadSceneAsync(request.SceneName);
         }
     }
 }
