@@ -163,7 +163,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe747683115be741b2ec1c61b924656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationReference: {fileID: 6930822752278769078}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 6930822752278769078}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: animationReference
+      Entry: 10
+      Data: 0
   _onAnimationFinished:
     m_PersistentCalls:
       m_Calls:

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using DG.Tweening;
 
-public class ShipDamagedAnimation : AnimationBase
+public class ShipDamagedAnimation :MonoBehaviour, AnimationBase
 {
     [SerializeField] private Transform _target;
     [SerializeField] private Vector3 _strength = new Vector3(10f, 0f, 10f);
@@ -10,12 +10,12 @@ public class ShipDamagedAnimation : AnimationBase
     [SerializeField] private float _randomness = 50f;
     [SerializeField] private float _duration = 1f;
 
-    public override void Play()
+    public void Play()
     {
         _target.DOShakeRotation(_duration, _strength, _vibrato, _randomness);
     }
     
-    public override void Play(Action callback)
+    public void Play(Action callback)
     {
         _target.DOShakeRotation(_duration, _strength, _vibrato, _randomness).OnComplete(() =>
         {

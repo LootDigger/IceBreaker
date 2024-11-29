@@ -2,7 +2,7 @@
     <ui:VisualElement name="BackGround" style="flex-grow: 1; background-color: rgb(49, 174, 255);">
         <ui:VisualElement name="TextElement" style="flex-grow: 1; flex-direction: column;">
             <ui:VisualElement name="ICE_TEXT_CONTAINER" style="flex-grow: 1; position: absolute; align-items: auto;">
-                <ui:Label tabindex="-1" text="ICEBREAKER" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ICE" style="-unity-text-align: upper-center; justify-content: center; color: rgb(255, 255, 255); -unity-font-style: bold-and-italic; font-size: 100px; width: 274px; align-items: auto; margin-top: 850px; margin-left: 400px; margin-right: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; margin-bottom: 0;" />
+                <ui:Label tabindex="-1" text="ICEBREAKER" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GAME-LOGO" style="-unity-text-align: upper-center; justify-content: center; color: rgb(255, 255, 255); -unity-font-style: bold-and-italic; font-size: 100px; width: 274px; align-items: auto; margin-top: 850px; margin-left: 400px; margin-right: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; margin-bottom: 0; display: flex;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="EmptyArea" style="flex-grow: 1;" />

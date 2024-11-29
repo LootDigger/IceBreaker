@@ -36,7 +36,7 @@ namespace CORE.GameStates
             try
             {
                 UIEventDocker.OnLoadingUIShown?.Invoke();
-                await InitWaiter();
+                // await InitWaiter();
                 await LoadGameScene();
             }
             catch (Exception e)
@@ -72,26 +72,26 @@ namespace CORE.GameStates
             });
         }
 
-        private async UniTask InitWaiter()
-        {
-            try
-            {
-                //TODO: Fix Magic number
-                GameInitWaiter dummyWaiter = new GameInitWaiter(5000);
-                await dummyWaiter.WaitForGameLoad();
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e.Message);
-                throw;
-            }
-        }
+        // private async UniTask InitWaiter()
+        // {
+        //     try
+        //     {
+        //         //TODO: Fix Magic number
+        //         GameInitWaiter dummyWaiter = new GameInitWaiter(5000);
+        //         await dummyWaiter.WaitForGameLoad();
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Debug.LogError(e.Message);
+        //         throw;
+        //     }
+        // }
 
-        private class GameInitWaiter
-        {
-            private int _waitTime;
-            public GameInitWaiter(int time) => _waitTime = time;
-            public async UniTask WaitForGameLoad() => await UniTask.Delay(_waitTime);
-        }
+        // private class GameInitWaiter
+        // {
+        //     private int _waitTime;
+        //     public GameInitWaiter(int time) => _waitTime = time;
+        //     public async UniTask WaitForGameLoad() => await UniTask.Delay(_waitTime);
+        // }
     }
 }

@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-public class AnimationInvoker : MonoBehaviour
+public class AnimationInvoker : SerializedMonoBehaviour
 {
     [SerializeField]
     private AnimationBase animationReference;

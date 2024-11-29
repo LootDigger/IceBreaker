@@ -45,7 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe747683115be741b2ec1c61b924656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationReference: {fileID: 4398208410728175922}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 4398208410728175922}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: animationReference
+      Entry: 10
+      Data: 0
   _onAnimationFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -217,7 +229,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe747683115be741b2ec1c61b924656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationReference: {fileID: 566274583585671659}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 566274583585671659}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: animationReference
+      Entry: 10
+      Data: 0
   _onAnimationFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -668,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81f939c7c900224fa7850a61bf350f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rootObjectTransform: {fileID: 2745704871124948168}
+  _rootObjectTransform: {fileID: 5791917182447919305}
   _modelTransform: {fileID: 2745704871124948168}
   _rotationTransform: {fileID: 2745704871124948168}
   _initTransform: {fileID: 0}

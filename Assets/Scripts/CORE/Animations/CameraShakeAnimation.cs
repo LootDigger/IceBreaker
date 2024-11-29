@@ -6,7 +6,7 @@ using Patterns.ServiceLocator;
 
 namespace Core.PlayerCamera
 {
-    public class CameraShakeAnimation : AnimationBase
+    public class CameraShakeAnimation : MonoBehaviour, AnimationBase
     {
         [SerializeField] private Transform _target;
         [SerializeField] private float _duration = 0.25f;
@@ -34,12 +34,12 @@ namespace Core.PlayerCamera
             _playerHealth = ServiceLocator.GetService<HealthManager>();
         }
 
-        public override void Play()
+        public void Play()
         {
             _target.DOShakePosition(_duration, Strength, Vibrato);
         }
         
-        public override void Play(Action callback)
+        public void Play(Action callback)
         {
             _target.DOShakePosition(_duration, Strength, Vibrato).OnComplete(() =>
             {
