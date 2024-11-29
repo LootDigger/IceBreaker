@@ -21,7 +21,11 @@ namespace UI
 
         private void StartGame()
         {
-            (_gameManager ?? ServiceLocator.GetService<GameManager>()).StartGame();
+            if (_gameManager == null)
+            {
+                _gameManager = ServiceLocator.GetService<GameManager>();
+            }
+            _gameManager .StartGame();
         }
     }
 }

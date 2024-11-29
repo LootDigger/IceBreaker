@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FPSCounter : MonoBehaviour
 {
+    #if DEVELOPMENT_BUILD || UNITY_EDITOR
     private float deltaTime = 0.0f;
 
     private void Awake()
@@ -26,4 +27,5 @@ public class FPSCounter : MonoBehaviour
         Rect rect = new Rect(10, 10, 200, 50);
         GUI.Label(rect, text, style);
     }
+    #endif
 }

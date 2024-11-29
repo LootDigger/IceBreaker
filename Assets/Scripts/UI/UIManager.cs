@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
+using Patterns.ServiceLocator;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UI
 {
-  public class UIManager : MonoBehaviour
+  public class UIManager : MonoBehaviour,IView
   {
     [SerializeField] 
     private UIDocument _uiDocument;
@@ -21,6 +21,7 @@ namespace UI
 
     private void Awake()
     {
+      ServiceLocator.RegisterService(this);
       DontDestroyOnLoad(gameObject);
       InitScreens();
       SubscribeDockerEvents();
@@ -108,6 +109,17 @@ namespace UI
 
       screen.ShowInstantly();
       _currentScreen = screen;
+    }
+
+    public void UpdateScoreView(int score)
+    {
+      _gameplayUIScreen.UpdateScoreView(score);
+      _gameOverUIScreen.UpdateScoreView(score);
+    }
+
+    public void UpdateBestScoreView(int score)
+    {
+      _gameOverUIScreen.UpdateBestView(score);
     }
   }
 }

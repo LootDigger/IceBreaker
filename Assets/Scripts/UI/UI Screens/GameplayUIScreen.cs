@@ -1,7 +1,4 @@
-using System;
 using CORE.Gameplay;
-using Patterns.ServiceLocator;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UI
@@ -15,31 +12,8 @@ namespace UI
         {
             _scoreText = _rootElement.Q<TextElement>("SCORE-TEXT");
         }
-        
-        public override void ShowInstantly()
-        { 
-            SubscribeGameManagerEvent();
-            base.ShowInstantly();
-        }
 
-        public override void HideInstantly()
-        {
-            UnsubscribeGameManagerEvent();
-            base.HideInstantly();
-        }
-
-        void SubscribeGameManagerEvent()
-        {
-            (_gameManager ?? ServiceLocator.GetService<GameManager>()).OnGameScoreChanged += GameManagerOnOnGameScoreChanged;
-        }
-
-        void UnsubscribeGameManagerEvent()
-        {
-            if(_gameManager == null) return;
-            _gameManager.OnGameScoreChanged += GameManagerOnOnGameScoreChanged;
-        }
-
-        private void GameManagerOnOnGameScoreChanged(int currentScore)
+        public void UpdateScoreView(int currentScore)
         {
             _scoreText.text = currentScore.ToString();
         }

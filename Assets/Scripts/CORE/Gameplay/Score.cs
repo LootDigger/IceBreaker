@@ -1,11 +1,24 @@
 using System;
-using UnityEngine.Serialization;
+using UnityEngine;
 
 namespace CORE.Gameplay
 {
    [Serializable]
-   public class Score
+   public class Score : IModel
    {
-      public int ScoreValue;
+      [SerializeField]
+      private int _scoreValue;
+      
+      public event Action<int> OnScoreChangedEvent;
+
+      public int ScoreValue
+      {
+         get => _scoreValue;
+         set
+         {
+            _scoreValue = value;
+            OnScoreChangedEvent.Invoke(_scoreValue);
+         }
+      }
    }
 }
