@@ -36,6 +36,7 @@ Each screen was separated to unique document. This approach helps avoid the conf
 2. StateMachine
 3. MVP
 4. Object Pool
+5. Factory
 
 
 
