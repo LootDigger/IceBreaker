@@ -8,14 +8,15 @@ using UnityEngine;
 
 namespace CORE.Gameplay
 {
-   public class GameManager : MonoBehaviour,IPresenter
+   public class GameManager : MonoBehaviour
    {
       [SerializeField]
       private GameClock _clock;
 
       private IView _uiManager;
-      private Score _score;
-      private Score _bestScore;
+      private IModel<int> _scoreModel;
+      private IModel<int> _bestScoreModel;
+      
       private BestScoreSaver _bestScoreSaver;
       private StateMachine _shipStateMachine;
       private StateMachine _coreStateMachine;
@@ -42,26 +43,27 @@ namespace CORE.Gameplay
 
       private void InitUserScore()
       {
-         _score = new Score();
+         _scoreModel = new Score();
          _bestScoreSaver = new BestScoreSaver(new JSONSaver());
-         _bestScore = _bestScoreSaver.LoadScore();
-         _bestScore ??= new Score();
+         _bestScoreModel = _bestScoreSaver.LoadScore();
+         _bestScoreModel ??= new Score();
+         _uiManager.UpdateBestScoreView(_bestScoreModel.Value);
       }
 
       private void SubscribeEvents()
       {
          _shipStateMachine.SubscribeStateEnter<SHIP_DeadState>(OnPlayerDeath);
          _clock.OnSecondPassed += ClockOnOnSecondPassed;
-         _bestScore.OnScoreChangedEvent += OnBestScoreChangedEvent;
-         _score.OnScoreChangedEvent += OnScoreChangedEvent;
+         _bestScoreModel.OnModelChangedEvent += OnBestScoreChangedEvent;
+         _scoreModel.OnModelChangedEvent += OnScoreChangedEvent;
       }
 
       private void UnsubscribeEvents()
       {
          _shipStateMachine.UnsubscribeStateEnter<SHIP_DeadState>(OnPlayerDeath);
          _clock.OnSecondPassed -= ClockOnOnSecondPassed;
-         _bestScore.OnScoreChangedEvent -= OnBestScoreChangedEvent;
-         _score.OnScoreChangedEvent -= OnScoreChangedEvent;
+         _bestScoreModel.OnModelChangedEvent -= OnBestScoreChangedEvent;
+         _scoreModel.OnModelChangedEvent -= OnScoreChangedEvent;
       }
       
       private void OnBestScoreChangedEvent(int score)
@@ -76,20 +78,20 @@ namespace CORE.Gameplay
       
       private void ClockOnOnSecondPassed(int currentScore)
       {
-         _score.ScoreValue = currentScore;
+         _scoreModel.Value = currentScore;
       }
       
       private void OnGameStartedHandler()
       {
-         _score.ScoreValue = 0;
+         _scoreModel.Value = 0;
          _clock.StartClock();
       }
 
       private void UpdateBestScore()
       {
-         if(_score.ScoreValue <= _bestScore.ScoreValue) return;
-         _bestScore.ScoreValue = _score.ScoreValue;
-         _bestScoreSaver.SaveScore(_bestScore);
+         if(_scoreModel.Value <= _bestScoreModel.Value) return;
+         _bestScoreModel.Value = _scoreModel.Value;
+         _bestScoreSaver.SaveScore(_bestScoreModel as Score);
       }
 
       public void StartGame()
@@ -101,7 +103,7 @@ namespace CORE.Gameplay
       public void OnPlayerDeath()
       {
          _clock.StopClock();
-         _score.ScoreValue = _clock.SecondsElapsed;
+         _scoreModel.Value = _clock.SecondsElapsed;
          UpdateBestScore();
       }
    }

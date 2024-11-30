@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public interface IModel
+public interface IModel<T> where T: struct
 {
-
+    event Action<int> OnModelChangedEvent;
+    T Value { get; set; }
 }

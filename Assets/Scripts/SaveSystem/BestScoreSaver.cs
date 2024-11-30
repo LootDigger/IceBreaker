@@ -15,7 +15,7 @@ public class BestScoreSaver
 
    public void SaveScore(Score score)
    {
-      _saver.SaveData<Score>(score, SAVE_FILE_PATH);
+      _saver.SaveData(score, SAVE_FILE_PATH);
    }
    
    public Score LoadScore()

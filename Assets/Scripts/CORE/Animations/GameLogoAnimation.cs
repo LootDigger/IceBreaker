@@ -27,15 +27,12 @@ public class GameLogoAnimation : VisualElementAnimation
     {
         await UniTask.Delay(2000);
         Color currentColor = Color.white;
-        Debug.Log("Initial Color " + currentColor);
         await DOTween.To(
             () => currentColor.a,
             alpha =>
             {
                 currentColor.a = alpha;
                 _animatedElement.style.color = currentColor;
-                Debug.Log("Delta Color " + currentColor);
-
             },
             0f,
             duration

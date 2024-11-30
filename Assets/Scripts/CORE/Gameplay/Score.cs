@@ -4,20 +4,17 @@ using UnityEngine;
 namespace CORE.Gameplay
 {
    [Serializable]
-   public class Score : IModel
+   public class Score : IModel<int>
    {
       [SerializeField]
       private int _scoreValue;
+      public event Action<int> OnModelChangedEvent;
       
-      public event Action<int> OnScoreChangedEvent;
-
-      public int ScoreValue
-      {
-         get => _scoreValue;
+      public int Value { get => _scoreValue;
          set
          {
             _scoreValue = value;
-            OnScoreChangedEvent.Invoke(_scoreValue);
+            OnModelChangedEvent?.Invoke(_scoreValue);
          }
       }
    }
