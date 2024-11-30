@@ -16,6 +16,8 @@ namespace Core.Procedural.World
     public class ChunkGridController : MonoBehaviour, ILoader
     {
         [SerializeField]
+        private ChunkGenerationSettings _chunkGenerationSettings;
+        [SerializeField]
         private GameObject _chunkPrefab;
         [SerializeField] 
         private List<Chunk> _chunks;
@@ -43,7 +45,7 @@ namespace Core.Procedural.World
             for (int i = 0; i < _chunks.Count; i++)
             {
                 _chunks[i].Init(player);
-                _chunkEnemyGenerators[i].Init(poolManager,icebergFactory);
+                _chunkEnemyGenerators[i].Init(poolManager,icebergFactory,_chunkGenerationSettings.EnemyPerChunkCount);
                 _chunkParticlesGenerators[i].Init(poolManager,iceFactory);
                 await UniTask.Delay(deltaTimeMil);
             }

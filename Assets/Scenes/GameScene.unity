@@ -2833,7 +2833,7 @@ GameObject:
   - component: {fileID: 458569823}
   - component: {fileID: 458569824}
   m_Layer: 0
-  m_Name: Preloader
+  m_Name: ContentPreloader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4066,6 +4066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e7e48b7415f714cb1289eefe38a037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _chunkGenerationSettings: {fileID: 11400000, guid: 5e024f0a053e7e2419eafa231f6259c8, type: 2}
   _chunkPrefab: {fileID: 22702629936663649, guid: 33cd59c52fd46b143b3deb2bb2e385f9, type: 3}
   _chunks:
   - {fileID: 8325731}

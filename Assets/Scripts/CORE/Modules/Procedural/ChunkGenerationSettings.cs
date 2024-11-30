@@ -19,10 +19,14 @@ namespace CORE.Modules.ProceduralSystem
       [SerializeField] private int _chunkParticlesCount;
       [SerializeField] private float _particleSpawnRadius;
       
+      [Header("ENEMY SETTINGS")]
+      [SerializeField] private int _enemyPerChunkCount;
+      
       public float GenerateDistance => _generateDistance;
       public float DisposeDistance => _disposeDistance;
       public int ChunksCount => _chunksCount;
       public int ChunkParticlesCount => _chunkParticlesCount;
+      public int EnemyPerChunkCount => _enemyPerChunkCount;
       public float ParticleSpawnRadius => _particleSpawnRadius;
       public int GlobalParticlesCount => _chunkParticlesCount * _chunksCount;
    }

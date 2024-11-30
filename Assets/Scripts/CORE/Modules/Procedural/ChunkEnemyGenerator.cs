@@ -12,8 +12,6 @@ namespace CORE.Modules.ProceduralSystem
     public class ChunkEnemyGenerator : MonoBehaviour
     {
         [SerializeField]
-        private int _enemyCount = 1;
-        [SerializeField]
         private float _spawnRadius = 10f;
         [SerializeField]
         private Collider _nonSpawnArea;
@@ -21,11 +19,13 @@ namespace CORE.Modules.ProceduralSystem
         private PoolManager _poolManager;
         private AbstractPrefabFactory _icebergPrefabFactory;
         private readonly List<GameObject> _generatedIcebergs = new();
+        private int _enemyCount;
 
-        public void Init(PoolManager poolManRef, IcebergPrefabFactory icebergFactoryRef)
+        public void Init(PoolManager poolManRef, IcebergPrefabFactory icebergFactoryRef, int enemyCount)
         {
            _poolManager = poolManRef;
            _icebergPrefabFactory = icebergFactoryRef;
+           _enemyCount = enemyCount;
         }
         
         private void SpawnIcebergs()

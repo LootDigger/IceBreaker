@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5954d4424f8d195429f92e57482aa4d0, type: 3}
   m_Name: ChunkGenerationSettings
   m_EditorClassIdentifier: 
-  _generateDistance: 40
-  _disposeDistance: 40
+  _generateDistance: 60
+  _disposeDistance: 60
   _chunksCount: 100
-  _chunkParticlesCount: 25
+  _chunkParticlesCount: 50
   _particleSpawnRadius: 10
+  _enemyPerChunkCount: 1
