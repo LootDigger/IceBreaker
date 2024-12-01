@@ -1,18 +1,22 @@
 # ICEBREAKER
 
-**Small mobile game prototype born from the JOBS tech demo.
+**Small mobile game prototype born from the JOBS tech demo.**
 
-Please remember, it was created in a short time as a prototype project and still may contain bugs.
+Project was created in a short time under the time pressure only as a prototype project and still may contain bugs.
 
-Currently runs in Editor and Android platform. Rest of platforms wasn't tested, but it should work ;)
+Currently runs in Editor and Android platform. Feel free to download Android APK from releases.
 
-![Record_2024-11-30-12-09-17-ezgif com-optimize](https://github.com/user-attachments/assets/0f953f03-756b-4ccf-aab6-390856f1580c)
+![Record_2024-12-01-16-14-00-ezgif com-optimize](https://github.com/user-attachments/assets/1ef42ecc-5f89-4209-9c37-b6474b703787)
 
 
-### RUN instruction
+### EDITOR RUN INSTRUCTIONS
+
+**Unity Editor version: 2022.3.47f1**
+
 1. Open EntryPoint scene.
 2. Run it.
 3. Ahoj!
+
 
 ## Main Features
 
