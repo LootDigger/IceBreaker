@@ -8,7 +8,6 @@ Currently runs in Editor and Android platform. Feel free to download Android APK
 
 ![Record_2024-12-01-16-14-00-ezgif com-optimize](https://github.com/user-attachments/assets/1ef42ecc-5f89-4209-9c37-b6474b703787)
 
-
 ### EDITOR RUN INSTRUCTIONS
 
 **Unity Editor version: 2022.3.47f1**
@@ -31,7 +30,7 @@ Each particle has 2 behaviours.
 ## UI Toolkit
 Instead of Unity UI, the Unity Toolkit was used.
 ![image](https://github.com/user-attachments/assets/4a3f97d2-7bce-42f4-b3c8-12867f07d114)
-Each screen was separated to unique document. This approach helps avoid the conflicts in UI changes for designers and increase readibility
+Each screen was separated to unique document. This approach helps avoid the conflicts in UI changes for designers and increases readibility.
 
 
 
@@ -49,15 +48,15 @@ Big variation of optimisation techniques where used to match the target 30 FPS a
 
 1. JOBS SYSTEM
    
-3. Dynamic batching and general draw calls optimisation. Total draw calls is 17 (where ship model takes 10 XD)
+2. Dynamic batching and general draw calls optimisation. Total draw calls is 17 (where ship model takes 10 XD)
 ![image](https://github.com/user-attachments/assets/2fb34ecc-1c1b-4046-8397-e28591ab7b6e)
 ![image](https://github.com/user-attachments/assets/2673b039-178b-40a1-82f8-f8294074dc27)
 
-4. Asynchronous world generating
+3. Asynchronous world generating
    
 ![ScreenRecording2024-11-30131131-ezgif com-optimize](https://github.com/user-attachments/assets/06bf7135-682e-402b-902c-96a02ae7d53f)
 
-6. Partial world chunks loading
+4. World chunks loading
    
 ![ScreenRecording2024-11-30131846-ezgif com-optimize](https://github.com/user-attachments/assets/38435dab-feaf-42ca-a621-680a18b00841)
 
