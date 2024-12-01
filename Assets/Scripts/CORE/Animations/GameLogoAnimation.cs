@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class GameLogoAnimation : VisualElementAnimation
 {
     private float _duration;
+    private float DURATION = 2000;
     
     public GameLogoAnimation(VisualElement element, float duration) : base(element)
     {
